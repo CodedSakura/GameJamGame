@@ -1,10 +1,10 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/Player.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Tiles/Square.png" type="Texture" id=2]
+[ext_resource path="res://Assets/MainCharacter.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8, 8 )
+extents = Vector2( 7, 8 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {

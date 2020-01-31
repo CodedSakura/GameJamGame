@@ -8,7 +8,7 @@ export var max_fall_speed = 1000
 onready var anim_player = $AnimatedSprite
  
 var y_velo = 0
-var facing_right = false
+var facing_right = true
  
 func _physics_process(delta):
     var move_dir = 0
