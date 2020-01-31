@@ -34,11 +34,11 @@ func _physics_process(delta):
    
     if grounded:
         if move_dir == 0:
-            play_anim("idle")
+            play_anim("walk")
         else:
             play_anim("walk")
     else:
-        play_anim("jump")
+        play_anim("walk")
  
 func flip():
     facing_right = !facing_right
