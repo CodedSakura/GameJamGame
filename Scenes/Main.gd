@@ -8,6 +8,10 @@ var picked_piece
 var start_pos
 var overlaps = false
 
+var is_player_picked = false
+var overlaps_player = false
+var player_offset
+
 func _process(delta):
 	handle_pausing()
 	handle_drag()
@@ -19,18 +23,27 @@ func handle_pausing():
 
 func handle_drag():
 	if Input.is_action_just_pressed("mouse_left") && get_tree().paused:
-		pick_piece()
+		var mouse = get_viewport().get_mouse_position()
+		pick_piece(mouse)
+		if is_picked && overlaps_player:
+			pick_player(mouse)
 	if Input.is_action_just_released("mouse_left") && is_picked:
 		is_picked = false
+		is_player_picked = false
 		picked_piece.get_node("Area2D").disconnect("area_entered", self, "_overlaps_true")
 		picked_piece.get_node("Area2D").disconnect("area_exited", self, "_overlaps_false")
+		picked_piece.get_node("Area2D").disconnect("body_entered", self, "_overlaps_player_true")
+		picked_piece.get_node("Area2D").disconnect("body_exited", self, "_overlaps_player_false")
 		if overlaps:
 			picked_piece.position = start_pos
+			$Player.position = start_pos + player_offset
 		overlaps = false
 
 	if is_picked:
 		var move = get_viewport().get_mouse_position() - start_pos + offset
 		picked_piece.position = snap(move)
+		if is_player_picked:
+			$Player.position = picked_piece.position + player_offset
 
 func snap(mv):
 	mv.x = round(mv.x/snap_px)*snap_px
@@ -39,8 +52,11 @@ func snap(mv):
 	mv.y = start_pos.y + mv.y
 	return mv
 
-func pick_piece():
-	var mouse_pos = get_viewport().get_mouse_position()
+func pick_player(mouse_pos):
+	player_offset = $Player.position - start_pos
+	is_player_picked = true
+
+func pick_piece(mouse_pos):
 	var space_state = get_world_2d().direct_space_state
 	var result = space_state.intersect_point(mouse_pos, 10, [], 2, false, true) # DETECTO TIKAI 2. LAYER
 	if result.size():
@@ -50,9 +66,17 @@ func pick_piece():
 		start_pos = picked_piece.position
 		picked_piece.get_node("Area2D").connect("area_entered", self, "_overlaps_true")
 		picked_piece.get_node("Area2D").connect("area_exited", self, "_overlaps_false")
+		picked_piece.get_node("Area2D").connect("body_entered", self, "_overlaps_player_true")
+		picked_piece.get_node("Area2D").connect("body_exited", self, "_overlaps_player_false")
 		
 func _overlaps_true(area):
 	overlaps = true
 	
 func _overlaps_false(area):
 	overlaps = false
+
+func _overlaps_player_true(area):
+	overlaps_player = true
+	
+func _overlaps_player_false(area):
+	overlaps_player = false
