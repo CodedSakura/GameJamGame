@@ -1,45 +1,71 @@
 extends KinematicBody2D
  
 export var move_speed = 500
-export var jump_force = 1000
-export var gravity = 50
-export var max_fall_speed = 1000
+
+export var gravity = 8
+export var fallMultiplier = 2
+export var lowJumpMultiplier = 10 
+export var jumpVelocity = 400
  
 onready var anim_player = $AnimatedSprite
  
-var y_velo = 0
+var velocity = Vector2(0, 0)
 var facing_right = true
+
+var on_ladder = false
  
 func _physics_process(delta):
+    
+    move_and_slide(velocity, Vector2(0, -1), true)
+    var grounded = is_on_floor()
+    
     var move_dir = 0
+        
     if Input.is_action_pressed("move_right"):
         move_dir += 1
     if Input.is_action_pressed("move_left"):
         move_dir -= 1
-    move_and_slide(Vector2(move_dir * move_speed, y_velo), Vector2(0, -1))
-   
-    var grounded = is_on_floor()
-    y_velo += gravity
-    if grounded and Input.is_action_just_pressed("jump"):
-        y_velo = -jump_force
-    if grounded and y_velo >= 5:
-        y_velo = 5
-    if y_velo > max_fall_speed:
-        y_velo = max_fall_speed
-   
-    if facing_right and move_dir < 0:
+       
+    velocity.x = move_dir * move_speed
+	
+    if !on_ladder: # Physics w/o ladders
+        velocity.y += gravity 
+    
+        if grounded and velocity.y >= 1:
+            velocity.y = 1
+    
+        if velocity.y > 0: 
+            velocity += Vector2.UP * (-9.81) * (fallMultiplier)
+        elif velocity.y < 0 && Input.is_action_just_released("jump"):
+            velocity += Vector2.UP * (-9.81) * (lowJumpMultiplier)
+            
+        if grounded && Input.is_action_just_pressed("jump"): 
+            velocity += Vector2.UP * jumpVelocity
+    else: # Physics w/ ladders
+        velocity.y = 0
+        if Input.is_action_pressed("jump"):
+            velocity.y -= 1
+        if Input.is_action_pressed("ui_down"): #TODO parsaukt uz down
+            velocity.y += 1
+        velocity = velocity.normalized() * move_speed
+    
+    if (facing_right && move_dir < 0) || (!facing_right and move_dir > 0):
         flip()
-    if !facing_right and move_dir > 0:
-        flip()
-   
+   	
     if grounded:
         if move_dir == 0:
-            play_anim("walk")
+            play_anim("walk") #idle
         else:
-            play_anim("walk")
+            play_anim("walk") #walk
     else:
-        play_anim("walk")
+        play_anim("walk") #jump
  
+func enters_ladder():
+    on_ladder = true
+    
+func leaves_ladder():
+    on_ladder = false
+
 func flip():
     facing_right = !facing_right
     anim_player.flip_h = !anim_player.flip_h
