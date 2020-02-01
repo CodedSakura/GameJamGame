@@ -14,6 +14,8 @@ func _ready():
     
 func _physics_process(delta):
     if get_tree().paused:
+        while len(beams) > 0:
+            beams.pop_front().destroy()
         return
     for b in beams:
         b.update()
@@ -21,6 +23,8 @@ func _physics_process(delta):
             beams.erase(b)
         
 func add_beam():
+    if get_tree().paused:
+        return
     if emit_left:
         beams.append(BeamBase.Beam.new(self, Vector2(-speed, 0)))
     if emit_right:
