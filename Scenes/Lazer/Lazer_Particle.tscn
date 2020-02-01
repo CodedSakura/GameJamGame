@@ -6,10 +6,10 @@
 extents = Vector2( 8, 2 )
 
 [node name="Node2D" type="KinematicBody2D"]
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
-disabled = true
 
 [node name="Sprite" type="Sprite" parent="."]
 z_index = 1

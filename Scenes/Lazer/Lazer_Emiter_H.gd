@@ -14,7 +14,7 @@ func _ready():
     
 func _physics_process(delta):
     for b in beams:
-        b.update()
+        b.update(delta)
         
 func add_beam():
     if emit_left:
