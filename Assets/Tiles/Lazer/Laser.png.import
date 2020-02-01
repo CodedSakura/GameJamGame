@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Lazer_4.png-d4c76dd5b3216d892d7aa3097b0358bc.stex"
+path="res://.import/Laser.png-caa190f8c62179c742b3c79f425bd06e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Tiles/Lazer/Lazer_4.png"
-dest_files=[ "res://.import/Lazer_4.png-d4c76dd5b3216d892d7aa3097b0358bc.stex" ]
+source_file="res://Assets/Tiles/Lazer/Laser.png"
+dest_files=[ "res://.import/Laser.png-caa190f8c62179c742b3c79f425bd06e.stex" ]
 
 [params]
 

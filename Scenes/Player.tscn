@@ -3,8 +3,8 @@
 [ext_resource path="res://Scenes/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/MainCharacter.png" type="Texture" id=2]
 
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 5, 8 )
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 7, 15 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -16,6 +16,7 @@ animations = [ {
 
 [node name="Player" type="KinematicBody2D"]
 pause_mode = 1
+z_index = -2
 collision_layer = 5
 script = ExtResource( 1 )
 __meta__ = {
@@ -26,9 +27,13 @@ gravity = 10
 jumpVelocity = 230
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 3 )
+position = Vector2( -1, 1 )
+shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
 animation = "walk"
 offset = Vector2( -1, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
