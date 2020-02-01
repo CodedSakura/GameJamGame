@@ -11,10 +11,15 @@ var beams = []
 
 func _ready():
     $Timer.connect("timeout", self, "add_beam")
+#    add_beam()
     
 func _physics_process(delta):
+    if get_tree().paused:
+        return
     for b in beams:
-        b.update()
+        b.update(delta)
+        if not b.alive:
+            beams.erase(b)
         
 func add_beam():
     if emit_left:
