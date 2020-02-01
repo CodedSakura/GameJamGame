@@ -1,8 +1,8 @@
 extends StaticBody2D
 
-export var emit_up = false
-export var emit_down = true
-export var speed = 100
+export var emit_up = true
+export var emit_down = false
+export var speed = 192
 export var max_count = 50
 
 onready var BeamBase = preload("res://Scenes/Lazer/Lazer_Emiter_Base.gd").new()
@@ -17,6 +17,8 @@ func _physics_process(delta):
         return
     for b in beams:
         b.update(delta)
+        if not b.alive:
+            beams.erase(b)
         
 func add_beam():
     if emit_up:

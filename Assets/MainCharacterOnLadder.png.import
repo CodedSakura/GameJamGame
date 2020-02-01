@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Lazer_2.png-40f3a31efa36ea9f7134910b91925f7e.stex"
+path="res://.import/MainCharacterOnLadder.png-3950d5bccc7e21d37cd4f6f59af4da84.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Tiles/Lazer/Lazer_2.png"
-dest_files=[ "res://.import/Lazer_2.png-40f3a31efa36ea9f7134910b91925f7e.stex" ]
+source_file="res://Assets/MainCharacterOnLadder.png"
+dest_files=[ "res://.import/MainCharacterOnLadder.png-3950d5bccc7e21d37cd4f6f59af4da84.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

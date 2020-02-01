@@ -2,7 +2,7 @@ extends StaticBody2D
 
 export var emit_left = false
 export var emit_right = true
-export var speed = 100
+export var speed = 192
 export var max_count = 50
 
 onready var BeamBase = preload("res://Scenes/Lazer/Lazer_Emiter_Base.gd").new()
@@ -11,7 +11,6 @@ var beams = []
 
 func _ready():
     $Timer.connect("timeout", self, "add_beam")
-#    add_beam()
     
 func _physics_process(delta):
     if get_tree().paused:

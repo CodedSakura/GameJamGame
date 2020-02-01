@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Lazer_3.png-c49a6f1cc2769e6fb9342503c62743ad.stex"
+path="res://.import/Flag.png-94599bc0efc93ace31321634a19ba9cf.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Tiles/Lazer/Lazer_3.png"
-dest_files=[ "res://.import/Lazer_3.png-c49a6f1cc2769e6fb9342503c62743ad.stex" ]
+source_file="res://Assets/Tiles/Flag.png"
+dest_files=[ "res://.import/Flag.png-94599bc0efc93ace31321634a19ba9cf.stex" ]
 
 [params]
 
