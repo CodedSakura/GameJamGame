@@ -19,6 +19,19 @@ func _physics_process(delta):
     move_and_slide(velocity, Vector2(0, -1), true)
     var grounded = is_on_floor()
     
+    # collision with specific tiles
+    for i in get_slide_count():
+        var coll = get_slide_collision(i).collider
+        if coll.name.find("Lazer_Beam") >= 0:
+            print("death // lazer")
+        elif coll is TileMap:
+            var gpos = self.global_position - coll.global_position
+            for j in [Vector2(0, 17), Vector2(0, -15), Vector2(9, 9), Vector2(9, -9), Vector2(-9, 9), Vector2(-9, -9)]:
+                var pos = coll.world_to_map(gpos + j)
+                if coll.get_cellv(pos) == 7:
+                    print("death // spike")
+                    break
+    
     var move_dir = 0
         
     if Input.is_action_pressed("move_right"):
