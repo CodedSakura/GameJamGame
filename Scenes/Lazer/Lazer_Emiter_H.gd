@@ -16,7 +16,7 @@ func _physics_process(delta):
     if get_tree().paused:
         return
     for b in beams:
-        b.update(delta)
+        b.update()
         if not b.alive:
             beams.erase(b)
         

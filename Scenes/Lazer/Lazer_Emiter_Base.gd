@@ -20,7 +20,7 @@ class Beam:
         for i in _beam.get_slide_count():
             var collision = _beam.get_slide_collision(i)
             if collision.collider is TileMap:
-                var pos = collision.collider.world_to_map(_beam.global_position + _vel.normalized() * 8)
+                var pos = collision.collider.world_to_map(_beam.global_position + _vel.normalized() * 8 - collision.collider.global_position)
                 var bounce = _get_bounce(collision.collider, pos)
                 var old_vel = _vel
                 if bounce == Bounce.NONE:
@@ -46,7 +46,7 @@ class Beam:
             return Bounce.DESTROY
         var v = Vector2(1 if tile % 2 == 1 else -1, -1 if tile <= 3 else 1)
         var norm = _vel.normalized()
-        print("[2] ", norm, " ", v)
+#        print("[2] ", norm, " ", v)
         if norm.x == v.x or norm.y == v.y:
 #            print("[1] ", v.angle() - norm.angle())
             if v.angle() - norm.angle() > 0:
