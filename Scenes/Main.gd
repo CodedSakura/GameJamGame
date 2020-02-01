@@ -20,7 +20,7 @@ func _process(delta):
 func handle_pausing():
 	if Input.is_action_just_pressed("pause") && !is_picked:
 		get_tree().paused = !get_tree().paused
-		Physics2DServer.set_active(get_tree().paused)
+		Physics2DServer.set_active(true)
 
 func handle_drag():
 	if Input.is_action_just_pressed("mouse_left") && get_tree().paused:
@@ -77,6 +77,9 @@ func pick_piece(mouse_pos):
 		picked_piece.get_node("Area2D").connect("area_exited", self, "_overlaps_false")
 		picked_piece.get_node("Area2D").connect("body_entered", self, "_overlaps_player_true")
 		picked_piece.get_node("Area2D").connect("body_exited", self, "_overlaps_player_false")
+		var player_arr = picked_piece.get_node("Area2D").get_overlapping_bodies()
+		if player_arr.size() && player_arr[0] == $Player:
+			overlaps_player_really = picked_piece
 		
 func _overlaps_true(area):
 	overlaps = true
@@ -86,6 +89,6 @@ func _overlaps_false(area):
 
 func _overlaps_player_true(area):
 	overlaps_player = picked_piece
-	
+
 func _overlaps_player_false(area):
 	overlaps_player = null

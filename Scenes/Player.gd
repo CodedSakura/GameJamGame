@@ -26,9 +26,11 @@ func _physics_process(delta):
     if Input.is_action_pressed("move_left"):
         move_dir -= 1
        
-    velocity.x = move_dir * move_speed
 	
     if !on_ladder: # Physics w/o ladders
+    
+        velocity.x = move_dir * move_speed
+        
         velocity.y += gravity 
     
         if grounded and velocity.y >= 1:
@@ -42,6 +44,9 @@ func _physics_process(delta):
         if grounded && Input.is_action_just_pressed("jump"): 
             velocity += Vector2.UP * jumpVelocity
     else: # Physics w/ ladders
+    
+        velocity.x = move_dir
+    
         velocity.y = 0
         if Input.is_action_pressed("jump"):
             velocity.y -= 1
