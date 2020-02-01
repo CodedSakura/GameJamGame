@@ -9,7 +9,16 @@ var start_pos
 var overlaps = false
 
 func _process(delta):
-	if Input.is_action_just_pressed("mouse_left"):
+	handle_pausing()
+	handle_drag()
+
+func handle_pausing():
+	if Input.is_action_just_pressed("pause") && !is_picked:
+		get_tree().paused = !get_tree().paused
+		Physics2DServer.set_active(get_tree().paused)
+
+func handle_drag():
+	if Input.is_action_just_pressed("mouse_left") && get_tree().paused:
 		pick_piece()
 	if Input.is_action_just_released("mouse_left") && is_picked:
 		is_picked = false

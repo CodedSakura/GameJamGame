@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Levels/1/1.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Levels/1/2.tscn" type="PackedScene" id=2]
+
+[node name="Level" type="Node2D"]
+
+[node name="Piece" parent="." instance=ExtResource( 1 )]
+pause_mode = 2
+
+[node name="Piece2" parent="." instance=ExtResource( 2 )]
+pause_mode = 2
+position = Vector2( 144, 112 )

@@ -15,6 +15,7 @@ animations = [ {
 } ]
 
 [node name="Player" type="KinematicBody2D"]
+pause_mode = 1
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
