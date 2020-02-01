@@ -9,7 +9,8 @@ var start_pos
 var overlaps = false
 
 var is_player_picked = false
-var overlaps_player = false
+var overlaps_player = null
+var overlaps_player_really = null
 var player_offset
 
 func _process(delta):
@@ -25,24 +26,32 @@ func handle_drag():
 	if Input.is_action_just_pressed("mouse_left") && get_tree().paused:
 		var mouse = get_viewport().get_mouse_position()
 		pick_piece(mouse)
-		if is_picked && overlaps_player:
+		if is_picked && picked_piece == overlaps_player_really:
 			pick_player(mouse)
 	if Input.is_action_just_released("mouse_left") && is_picked:
 		is_picked = false
-		is_player_picked = false
 		picked_piece.get_node("Area2D").disconnect("area_entered", self, "_overlaps_true")
 		picked_piece.get_node("Area2D").disconnect("area_exited", self, "_overlaps_false")
 		picked_piece.get_node("Area2D").disconnect("body_entered", self, "_overlaps_player_true")
 		picked_piece.get_node("Area2D").disconnect("body_exited", self, "_overlaps_player_false")
 		if overlaps:
 			picked_piece.position = start_pos
-			$Player.position = start_pos + player_offset
+			if is_player_picked:
+				overlaps_player_really = picked_piece
+				$Player.position = start_pos + player_offset
+			elif picked_piece == overlaps_player:
+				overlaps_player = overlaps_player_really
+		else:
+			overlaps_player_really = overlaps_player
+		
+		is_player_picked = false
+		picked_piece = null
 		overlaps = false
 
 	if is_picked:
 		var move = get_viewport().get_mouse_position() - start_pos + offset
 		picked_piece.position = snap(move)
-		if is_player_picked:
+		if is_player_picked && picked_piece == overlaps_player_really:
 			$Player.position = picked_piece.position + player_offset
 
 func snap(mv):
@@ -76,7 +85,7 @@ func _overlaps_false(area):
 	overlaps = false
 
 func _overlaps_player_true(area):
-	overlaps_player = true
+	overlaps_player = picked_piece
 	
 func _overlaps_player_false(area):
-	overlaps_player = false
+	overlaps_player = null
