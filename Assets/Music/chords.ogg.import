@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/chords.ogg-779cf5234a2e7f48a981612e39f1fbbe.oggstr"
+
+[deps]
+
+source_file="res://Assets/Music/chords.ogg"
+dest_files=[ "res://.import/chords.ogg-779cf5234a2e7f48a981612e39f1fbbe.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
