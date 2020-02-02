@@ -8,6 +8,8 @@ export var fade_type = 1 # TRANS_SINE
 var player_camera
 var scene_camera
 
+var won = null
+
 var is_picked = false
 var offset
 var picked_piece
@@ -22,6 +24,8 @@ var player_offset
 var curr_level
 
 func _ready():
+    $"/root/Transition/AnimationPlayer".play("fade_in")
+    yield($"/root/Transition/AnimationPlayer", "animation_finished")
     $Level/Player.connect("player_death", self, "_handle_death")
     $Level/Player.connect("player_victory", self, "_handle_victory")
     curr_level = $Level
@@ -32,10 +36,13 @@ func _ready():
     current_music.volume_db = 0
 
 func _handle_death(ignored):
+	won = false
 	if !get_tree().paused:
 	    call_deferred("_load_level", $Level.filename.trim_prefix("res://Scenes/Levels/").trim_suffix("/Level.tscn"))
 
 func _load_level(n):
+    $"/root/Transition/AnimationPlayer".play("fade_out_alt" if !won else "fade_out")
+    yield($"/root/Transition/AnimationPlayer", "animation_finished")
     remove_child(curr_level)
     var res = load("res://Scenes/Levels/" + str(n) + "/Level.tscn")
     curr_level = res.instance()
@@ -44,12 +51,15 @@ func _load_level(n):
     curr_level.get_node("Player").connect("player_death", self, "_handle_death")
     curr_level.get_node("Player").connect("player_victory", self, "_handle_victory")
     reset_camera()
+    $"/root/Transition/AnimationPlayer".play("fade_in")
+    yield($"/root/Transition/AnimationPlayer", "animation_finished")
 
 func _handle_victory():
-    var n = int($Level.filename.trim_prefix("res://Scenes/Levels/").trim_suffix("/Level.tscn"))
-    if n == 9:
+	won = true
+	var n = int($Level.filename.trim_prefix("res://Scenes/Levels/").trim_suffix("/Level.tscn"))
+	if n == 9:
         get_tree().change_scene("res://Scenes/Credits.tscn")
-    elif n > 0:
+	elif n > 0:
         call_deferred("_load_level", n+1)
 
 func _reset_vars():

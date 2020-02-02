@@ -20,6 +20,10 @@ run/main_scene="res://Scenes/Menu.tscn"
 boot_splash/image="res://Assets/splash.png"
 config/icon="res://icon.png"
 
+[autoload]
+
+Transition="*res://Scenes/Transition.tscn"
+
 [debug]
 
 gdscript/warnings/unused_class_variable=false
