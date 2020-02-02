@@ -128,6 +128,8 @@ func pick_piece(mouse_pos):
 		var player_arr = picked_piece.get_node("Modulate/Area2D").get_overlapping_bodies()
 		if player_arr.size() && player_arr[0] == $Level/Player:
 			overlaps_player_really = picked_piece
+		else:
+			overlaps_player_really = null
 
 func set_tint(set):
     if set:
