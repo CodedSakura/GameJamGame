@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/LaserTurretH.png-9065082f56094f087af2ab426079ef8a.stex"
+path="res://.import/LaserTurretV.png-22c99cfbdc0c29e588efc526afe2e249.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Tiles/Lazer/LaserTurretH.png"
-dest_files=[ "res://.import/LaserTurretH.png-9065082f56094f087af2ab426079ef8a.stex" ]
+source_file="res://Assets/Tiles/Laser/LaserTurretV.png"
+dest_files=[ "res://.import/LaserTurretV.png-22c99cfbdc0c29e588efc526afe2e249.stex" ]
 
 [params]
 
