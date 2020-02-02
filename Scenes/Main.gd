@@ -26,7 +26,7 @@ func _ready():
 
 func _handle_death(ignored):
     var n = int($Level.filename.trim_prefix("res://Scenes/Levels/").trim_suffix("/Level.tscn"))
-    _load_level(n)
+    call_deferred("_load_level", n)
 
 func _load_level(n):
     remove_child(curr_level)
@@ -41,7 +41,7 @@ func _load_level(n):
 func _handle_victory():
     var n = int($Level.filename.trim_prefix("res://Scenes/Levels/").trim_suffix("/Level.tscn"))
     if n > 0:
-        _load_level(n+1)
+        call_deferred("_load_level", n+1)
 
 func _reset_vars():
     is_picked = false
