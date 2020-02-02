@@ -8,11 +8,21 @@ export var lowJumpMultiplier = 10
 export var jumpVelocity = 400
  
 onready var anim_player = $AnimatedSprite
+
+signal player_death
  
 var velocity = Vector2(0, 0)
 var facing_right = true
 
 var on_ladder = false
+
+# <placeholder>
+func _ready():
+    connect("player_death", self, "_player_death")
+
+func _player_death():
+    print("ded") 
+# </placeholder>
 
 func _physics_process(delta):
     
@@ -23,13 +33,13 @@ func _physics_process(delta):
     for i in get_slide_count():
         var coll = get_slide_collision(i).collider
         if coll.name.find("Lazer_Beam") >= 0:
-            print("death // lazer")
+            emit_signal("player_death")
         elif coll is TileMap:
             var gpos = self.global_position - coll.global_position
             for j in [Vector2(0, 17), Vector2(0, -15), Vector2(9, 9), Vector2(9, -9), Vector2(-9, 9), Vector2(-9, -9)]:
                 var pos = coll.world_to_map(gpos + j)
                 if coll.get_cellv(pos) == 7:
-                    print("death // spike")
+                    emit_signal("player_death")
                     break
     
     var move_dir = 0
