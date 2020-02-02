@@ -16,19 +16,52 @@ var overlaps_player = null
 var overlaps_player_really = null
 var player_offset
 
+var curr_level
+
+signal reload_self
+
 func _ready():
     $Level/Player.connect("player_death", self, "_handle_death")
     $Level/Player.connect("player_victory", self, "_handle_victory")
+    curr_level = $Level
     reset_camera()
 
-func _handle_death(pos):
-    $Level/Player.global_position = pos
+func _handle_death(ignored):
+#    print("> ", $Level.filename)
+#    remove_child(curr_level)
+#    curr_level.call_deferred("free")
+#    curr_level = curr_resource.instance()
+#    add_child(curr_level)
+    emit_signal("reload_self")
+#    $Level/Player.global_position = pos
     # temporary
 #    get_node("Level")
-    get_tree().reload_current_scene()
+#    get_tree().reload_current_scene()
 
 func _handle_victory():
-    print("u winned")
+    var n = int($Level.filename.trim_prefix("res://Scenes/Levels/").trim_suffix("/Level.tscn"))
+    if n > 0:
+#        print("u wonned / ", n)
+        remove_child(curr_level)
+        var res = load("res://Scenes/Levels/" + str(n+1) + "/Level.tscn")
+        curr_level = res.instance()
+        add_child(curr_level)
+        _reset_vars()
+        curr_level.get_node("Player").connect("player_death", self, "_handle_death")
+        curr_level.get_node("Player").connect("player_victory", self, "_handle_victory")
+        reset_camera()
+
+func _reset_vars():
+    is_picked = false
+    offset = null
+    picked_piece = null
+    start_pos = null
+    overlaps = false
+    
+    is_player_picked = false
+    overlaps_player = null
+    overlaps_player_really = null
+    player_offset = null
 
 func _process(delta):
 	handle_pausing()
@@ -61,7 +94,7 @@ func handle_drag():
 			picked_piece.position = start_pos
 			if is_player_picked:
 				overlaps_player_really = picked_piece
-				$Level/Player.position = start_pos + player_offset
+				curr_level.get_node("Player").position = start_pos + player_offset
 			elif picked_piece == overlaps_player:
 				overlaps_player = overlaps_player_really
 		else:
@@ -75,7 +108,7 @@ func handle_drag():
 		var move = get_global_mouse_position() - start_pos + offset
 		picked_piece.position = snap(move)
 		if is_player_picked && picked_piece == overlaps_player_really:
-			$Level/Player.position = picked_piece.position + player_offset
+			curr_level.get_node("Player").position = picked_piece.position + player_offset
 
 func snap(mv):
 	mv.x = round(mv.x/snap_px)*snap_px
@@ -85,7 +118,7 @@ func snap(mv):
 	return mv
 
 func pick_player(mouse_pos):
-	player_offset = $Level/Player.position - start_pos
+	player_offset = curr_level.get_node("Player").position - start_pos
 	is_player_picked = true
 
 func pick_piece(mouse_pos):
@@ -111,8 +144,8 @@ func set_tint(set):
         get_tree().call_group("modulate", "set_color")
 
 func reset_camera():
-    player_camera = $Level/Player.get_node("Camera2D")
-    scene_camera = $Level.get_node("Camera2D")
+    player_camera = curr_level.get_node("Player").get_node("Camera2D")
+    scene_camera = curr_level.get_node("Camera2D")
     player_camera.make_current()
 
 func _overlaps_true(area):
