@@ -2,6 +2,9 @@ extends Node2D
 
 export var snap_px = 16
 
+export var fade_duration = 1.00
+export var fade_type = 1 # TRANS_SINE
+
 var player_camera
 var scene_camera
 
@@ -23,6 +26,9 @@ func _ready():
     $Level/Player.connect("player_victory", self, "_handle_victory")
     curr_level = $Level
     reset_camera()
+    current_music = $Music1
+    current_music_id = 1
+    current_music.volume_db = 0
 
 func _handle_death(ignored):
 	if !get_tree().paused:
@@ -59,15 +65,39 @@ func _reset_vars():
 func _process(delta):
 	handle_pausing()
 	handle_drag()
+	handle_music()
+
+var was_in = null
+func handle_music():
+	if !get_tree().paused:
+		var space_state = get_world_2d().direct_space_state
+		var result = space_state.intersect_point($Level/Player.position, 10, [], 2, false, true)
+		if result.size() && result[0].collider != was_in:
+			switch_music()
+			was_in = result[0].collider
+
+var current_music
+var current_music_id
+func switch_music():
+    var rng = RandomNumberGenerator.new()
+    var rand_int = rng.randi_range(1, 4)
+    while rand_int == current_music_id:
+        rng.randomize()
+        rand_int = rng.randi_range(1, 4)
+    current_music_id = rand_int
+    $Tween.interpolate_property(current_music, "volume_db", 0, -80, fade_duration, fade_type, Tween.EASE_IN_OUT)
+    current_music = get_node("Music" + str(current_music_id))
+    $Tween.interpolate_property(current_music, "volume_db", -80, 0, fade_duration, fade_type, Tween.EASE_IN_OUT)
+    $Tween.start()
 
 func handle_pausing():
-	if Input.is_action_just_pressed("pause") && !is_picked:
-		get_tree().paused = !get_tree().paused
-		Physics2DServer.set_active(true)
-		if get_tree().paused:
+    if Input.is_action_just_pressed("pause") && !is_picked:
+        get_tree().paused = !get_tree().paused
+        Physics2DServer.set_active(true)
+        if get_tree().paused:
             scene_camera.make_current()
             set_tint(false)
-		else:
+        else:
             player_camera.make_current()
             set_tint(true)
 
