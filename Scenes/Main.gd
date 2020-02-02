@@ -17,7 +17,18 @@ var overlaps_player_really = null
 var player_offset
 
 func _ready():
+    $Level/Player.connect("player_death", self, "_handle_death")
+    $Level/Player.connect("player_victory", self, "_handle_victory")
     reset_camera()
+
+func _handle_death(pos):
+    $Level/Player.global_position = pos
+    # temporary
+#    get_node("Level")
+    get_tree().reload_current_scene()
+
+func _handle_victory():
+    print("u winned")
 
 func _process(delta):
 	handle_pausing()
