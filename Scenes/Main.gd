@@ -47,7 +47,9 @@ func _load_level(n):
 
 func _handle_victory():
     var n = int($Level.filename.trim_prefix("res://Scenes/Levels/").trim_suffix("/Level.tscn"))
-    if n > 0:
+    if n == 9:
+        get_tree().change_scene("res://Scenes/Credits.tscn")
+    elif n > 0:
         call_deferred("_load_level", n+1)
 
 func _reset_vars():

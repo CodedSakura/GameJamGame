@@ -6,12 +6,8 @@ func _on_PlayButton_pressed():
 
 
 func _on_CreditsButton_pressed():
-    $CreditsBGPanel.show()
+    get_tree().change_scene("res://Scenes/Credits.tscn")
 
 
 func _on_ExitButton_pressed():
     get_tree().quit()
-
-
-func _on_CreditsBackButton_pressed():
-    $CreditsBGPanel.hide()
