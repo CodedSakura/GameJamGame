@@ -4,8 +4,7 @@
 [ext_resource path="res://Assets/Tiles/Laser/Laser2.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Tiles/Laser/Laser3.png" type="Texture" id=3]
 
-[sub_resource type="AnimatedTexture" id=2]
-flags = 2
+[sub_resource type="AnimatedTexture" id=1]
 frames = 3
 fps = 15.0
 frame_0/texture = ExtResource( 1 )
@@ -16,7 +15,7 @@ frame_2/delay_sec = 0.0
 
 [resource]
 0/name = "LaserAnim.png 0"
-0/texture = SubResource( 2 )
+0/texture = SubResource( 1 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
 0/region = Rect2( 0, 0, 16, 16 )
