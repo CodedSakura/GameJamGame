@@ -1,24 +1,17 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scenes/Menu.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Menu/MenuScreen.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Menu/PlayButton.png" type="Texture" id=3]
-[ext_resource path="res://Assets/Menu/CreditsButton.png" type="Texture" id=4]
-[ext_resource path="res://Assets/Menu/ExitButton.png" type="Texture" id=5]
-[ext_resource path="res://Assets/Background.png" type="Texture" id=6]
-[ext_resource path="res://Assets/Menu/Credits.png" type="Texture" id=7]
-[ext_resource path="res://Assets/Menu/BackButton.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Menu/PlayButtonHover.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Menu/CreditsButton.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Menu/CreditsButtonHover.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Menu/ExitButton.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Menu/ExitButtonHover.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Music/menu.ogg" type="AudioStream" id=9]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 2 )
-region_rect = Rect2( 0, 0, 320, 240 )
-
-[sub_resource type="StyleBoxTexture" id=2]
-texture = ExtResource( 6 )
-region_rect = Rect2( 0, 0, 320, 240 )
-
-[sub_resource type="StyleBoxTexture" id=3]
-texture = ExtResource( 7 )
 region_rect = Rect2( 0, 0, 320, 240 )
 
 [node name="Control" type="Control"]
@@ -37,39 +30,27 @@ margin_top = 122.0
 margin_right = 124.0
 margin_bottom = 172.0
 texture_normal = ExtResource( 3 )
+texture_hover = ExtResource( 4 )
 
 [node name="CreditsButton" type="TextureButton" parent="."]
 margin_left = 203.216
 margin_top = 83.4513
 margin_right = 303.216
 margin_bottom = 133.451
-texture_normal = ExtResource( 4 )
+texture_normal = ExtResource( 5 )
+texture_hover = ExtResource( 6 )
 
 [node name="ExitButton" type="TextureButton" parent="."]
 margin_left = 12.2209
 margin_top = 183.663
 margin_right = 112.221
 margin_bottom = 233.663
-texture_normal = ExtResource( 5 )
+texture_normal = ExtResource( 7 )
+texture_hover = ExtResource( 8 )
 
-[node name="CreditsBGPanel" type="Panel" parent="."]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-custom_styles/panel = SubResource( 2 )
-
-[node name="Credits" type="Panel" parent="CreditsBGPanel"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-custom_styles/panel = SubResource( 3 )
-
-[node name="CreditsBackButton" type="TextureButton" parent="CreditsBGPanel/Credits"]
-margin_left = 107.172
-margin_top = 187.622
-margin_right = 207.172
-margin_bottom = 237.622
-texture_normal = ExtResource( 8 )
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+autoplay = true
 [connection signal="pressed" from="PlayButton" to="." method="_on_PlayButton_pressed"]
 [connection signal="pressed" from="CreditsButton" to="." method="_on_CreditsButton_pressed"]
 [connection signal="pressed" from="ExitButton" to="." method="_on_ExitButton_pressed"]
-[connection signal="pressed" from="CreditsBGPanel/Credits/CreditsBackButton" to="." method="_on_CreditsBackButton_pressed"]

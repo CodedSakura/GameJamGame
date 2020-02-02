@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scenes/Modulate.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Tiles.tres" type="TileSet" id=2]
+[ext_resource path="res://Assets/TextRepairTheLevel.png" type="Texture" id=3]
 
 [node name="Piece" type="Node2D"]
 
@@ -32,3 +33,7 @@ texture_mode = 1065353216
 joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 87.5599, 151.922 )
+texture = ExtResource( 3 )

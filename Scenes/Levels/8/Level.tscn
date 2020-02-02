@@ -24,10 +24,9 @@ z_index = -100
 texture = ExtResource( 3 )
 
 [node name="Constraint" type="Polygon2D" parent="."]
-modulate = Color( 1, 1, 1, 0.392157 )
 position = Vector2( 288, -24 )
-color = Color( 0, 0, 0, 1 )
-polygon = PoolVector2Array( -800, -112, 208, -112, 208, 160, -800, 160, -800, -96, -784, -96, -784, 144, 192, 144, 192, 144, 192, -96, -800, -96 )
+color = Color( 0, 0, 0, 0.196078 )
+polygon = PoolVector2Array( -1144, -488, 504, -488, 392, 528, -984, 528, -1296, -96, -784, -96, -784, 144, 192, 144, 192, 144, 192, -96, -1296, -96 )
 script = ExtResource( 4 )
 
 [node name="Area2D" type="Area2D" parent="Constraint"]

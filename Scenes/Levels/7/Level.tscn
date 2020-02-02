@@ -15,7 +15,7 @@
 script = ExtResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2( 4, 4 )
+zoom = Vector2( 3, 3 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( -184, 224 )
@@ -25,10 +25,9 @@ z_index = -100
 texture = ExtResource( 3 )
 
 [node name="Constraint" type="Polygon2D" parent="."]
-modulate = Color( 1, 1, 1, 0.392157 )
 position = Vector2( -400, 48 )
-color = Color( 0, 0, 0, 1 )
-polygon = PoolVector2Array( -48, -416, 848, -416, 848, -296, 720, -296, 80, -288, 80, -48, 64, -48, 64, 208, 400, 208, 400, 192, 720, 192, 720, -296, 848, -296, 848, 336, -48, 336 )
+color = Color( 0, 0, 0, 0.196078 )
+polygon = PoolVector2Array( -152, -464, 1016, -528, 1192, -400, 1128, -288, 80, -288, 80, -48, 64, -48, 64, 208, 400, 208, 400, 192, 720, 192, 720, -288, 1168, -288, 920, 336, -112, 344 )
 script = ExtResource( 4 )
 
 [node name="Area2D" type="Area2D" parent="Constraint"]
@@ -37,7 +36,7 @@ collision_mask = 4
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Constraint/Area2D"]
 position = Vector2( -128, 0 )
-polygon = PoolVector2Array( 80, -288, 208, -288, 848, -288, 848, 192, 528, 192, 528, 208, 192, 208, 192, -48, 208, -48, 208, -288, 80, -288, 80, 336, 976, 336, 976, -416, 80, -408 )
+polygon = PoolVector2Array( -128, -288, 208, -288, 848, -288, 848, 192, 528, 192, 528, 208, 192, 208, 192, -48, 208, -48, 208, -288, -128, -288, -48, 344, 1088, 360, 1080, -448, -64, -432 )
 
 [node name="Piece" parent="." instance=ExtResource( 8 )]
 

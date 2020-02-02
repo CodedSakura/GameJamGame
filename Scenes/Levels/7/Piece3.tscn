@@ -25,7 +25,7 @@ position = Vector2( 8, 8 )
 polygon = PoolVector2Array( -5.99194, -21.857, -6.11394, 230.148, 325.375, 229.137, 325.035, 217.558, 5.7695, 217.825, 5.92773, -21.857 )
 
 [node name="Line2D" type="Line2D" parent="."]
-points = PoolVector2Array( 0, -16, 16, -16, 16, 224, 336, 224, 336, 240, 0, 240, 0, 0 )
+points = PoolVector2Array( 0, -16, 16, -16, 16, 224, 336, 224, 336, 240, 0, 240, 0, -16 )
 width = 2.0
 default_color = Color( 1, 1, 1, 1 )
 texture_mode = 1065353216

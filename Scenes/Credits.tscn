@@ -1,0 +1,39 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Control.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Background.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Menu/Credits.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Menu/BackButton.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Menu/BackButtonHover.png" type="Texture" id=5]
+
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 320, 240 )
+
+[sub_resource type="StyleBoxTexture" id=2]
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 320, 240 )
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="Panel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="Panel" type="Panel" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 2 )
+
+[node name="TextureButton" type="TextureButton" parent="Panel/Panel"]
+margin_left = 105.886
+margin_top = 187.765
+margin_right = 205.886
+margin_bottom = 237.765
+texture_normal = ExtResource( 4 )
+texture_hover = ExtResource( 5 )
+[connection signal="pressed" from="Panel/Panel/TextureButton" to="." method="_on_TextureButton_pressed"]
