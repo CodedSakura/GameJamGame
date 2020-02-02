@@ -26,8 +26,7 @@ func _ready():
 
 func _handle_death(ignored):
 	if !get_tree().paused:
-	    var n = int($Level.filename.trim_prefix("res://Scenes/Levels/").trim_suffix("/Level.tscn"))
-	    call_deferred("_load_level", n)
+	    call_deferred("_load_level", $Level.filename.trim_prefix("res://Scenes/Levels/").trim_suffix("/Level.tscn"))
 
 func _load_level(n):
     remove_child(curr_level)

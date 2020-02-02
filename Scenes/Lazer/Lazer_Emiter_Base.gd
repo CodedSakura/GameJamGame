@@ -23,18 +23,13 @@ class Beam:
                 var pos = collision.collider.world_to_map(_beam.global_position + _vel.normalized() * 8 - collision.collider.global_position)
                 var bounce = _get_bounce(collision.collider, pos)
                 var old_vel = _vel
-                if bounce == Bounce.NONE:
-                    return
+                if bounce is Vector2:
+                    _vel = bounce * _vel.length()
+                    print(old_vel, " - ", _vel)
+                    _update_rotation(old_vel)
                 elif bounce == Bounce.DESTROY:
+                    print("dieded")
                     destroy()
-                    return
-                elif bounce == Bounce.CW:
-                    _vel = _vel.rotated(PI/2).round()
-                elif bounce == Bounce.CCW:
-                    _vel = _vel.rotated(-PI/2).round()
-                else:
-                    return
-                _update_rotation(old_vel)
             
     func _get_bounce(tm, posv): 
         var x = posv.x
@@ -48,10 +43,11 @@ class Beam:
         var norm = _vel.normalized()
 #        print("[2] ", norm, " ", v)
         if norm.x == v.x or norm.y == v.y:
+            return norm - v
 #            print("[1] ", v.angle() - norm.angle())
-            if v.angle() - norm.angle() > 0:
-                return Bounce.CCW
-            return Bounce.CW
+#            if v.angle() - norm.angle() > 0:
+#                return Bounce.CCW
+#            return Bounce.CW
         else:
             return Bounce.DESTROY
         
