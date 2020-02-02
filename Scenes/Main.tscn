@@ -26,16 +26,13 @@ autoplay = true
 [node name="Music2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
 volume_db = -80.0
-autoplay = true
 
 [node name="Music3" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
 volume_db = -80.0
-autoplay = true
 
 [node name="Music4" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
 volume_db = -80.0
-autoplay = true
 
 [node name="Tween" type="Tween" parent="."]

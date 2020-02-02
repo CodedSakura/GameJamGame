@@ -24,10 +24,9 @@ z_index = -100
 texture = ExtResource( 3 )
 
 [node name="Constraint" type="Polygon2D" parent="."]
-modulate = Color( 1, 1, 1, 0.392157 )
 position = Vector2( -400, 48 )
-color = Color( 1, 0, 0, 1 )
-polygon = PoolVector2Array( -240, -304, 1040, -304, 1040, -160, -112, -160, -112, 85.3265, 897.365, 80.6595, 896, -160, 1040, -160, 1040, 208, -240, 208 )
+color = Color( 0, 0, 0, 0.196078 )
+polygon = PoolVector2Array( -312, -592, 1144, -616, 1376, -160, -112, -160, -112, 80, 897.365, 80.6595, 896, -160, 1352, -160, 1296, 568, -360, 512 )
 script = ExtResource( 4 )
 
 [node name="Area2D" type="Area2D" parent="Constraint"]
@@ -36,7 +35,7 @@ collision_mask = 4
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Constraint/Area2D"]
 position = Vector2( -128, 0 )
-polygon = PoolVector2Array( -112, -160, 1024, -160, 1024, 81.7414, 16, 80, 16, -160, -112, -160, -112, 80, -112, 208, 1168, 208, 1168, -304, -112, -296 )
+polygon = PoolVector2Array( -112, -160, 1024, -160, 1024, 81.7414, 16, 80, 16, -160, -112, -160, -112, 80, -112, 432, 1168, 432, 1168, -528, -112, -528 )
 
 [node name="Piece" parent="." instance=ExtResource( 5 )]
 position = Vector2( 160, -112 )
