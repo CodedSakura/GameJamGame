@@ -102,3 +102,9 @@ func play_anim(anim_name):
     if anim_player.is_playing() and anim_player.animation == anim_name:
         return
     anim_player.play(anim_name)
+
+func set_black():
+    modulate = Color(1, 1, 1)
+
+func set_color():
+    modulate = Color(0, 0, 0)
