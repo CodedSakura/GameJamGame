@@ -25,8 +25,9 @@ func _ready():
     reset_camera()
 
 func _handle_death(ignored):
-    var n = int($Level.filename.trim_prefix("res://Scenes/Levels/").trim_suffix("/Level.tscn"))
-    call_deferred("_load_level", n)
+	if !get_tree().paused:
+	    var n = int($Level.filename.trim_prefix("res://Scenes/Levels/").trim_suffix("/Level.tscn"))
+	    call_deferred("_load_level", n)
 
 func _load_level(n):
     remove_child(curr_level)
