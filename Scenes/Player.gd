@@ -74,7 +74,7 @@ func _physics_process(delta):
         velocity.y = 0
         if Input.is_action_pressed("jump"):
             velocity.y -= 1
-        if Input.is_action_pressed("ui_down"): #TODO parsaukt uz down
+        if Input.is_action_pressed("down"):
             velocity.y += 1
         velocity = velocity.normalized() * move_speed
     
