@@ -20,7 +20,7 @@ position = Vector2( -144, 96 )
 zoom = Vector2( 4, 4 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( -120, -64 )
+position = Vector2( -88, -40 )
 
 [node name="Sprite" type="Sprite" parent="."]
 visible = false
