@@ -18,38 +18,33 @@ var player_offset
 
 var curr_level
 
-signal reload_self
-
 func _ready():
     $Level/Player.connect("player_death", self, "_handle_death")
     $Level/Player.connect("player_victory", self, "_handle_victory")
+    connect("reload_self", $Level, "_reload_self")
     curr_level = $Level
     reset_camera()
 
 func _handle_death(ignored):
-#    print("> ", $Level.filename)
-#    remove_child(curr_level)
-#    curr_level.call_deferred("free")
-#    curr_level = curr_resource.instance()
-#    add_child(curr_level)
-    emit_signal("reload_self")
-#    $Level/Player.global_position = pos
-    # temporary
-#    get_node("Level")
-#    get_tree().reload_current_scene()
+    var n = int($Level.filename.trim_prefix("res://Scenes/Levels/").trim_suffix("/Level.tscn"))
+    _load_level(n)
+
+func _load_level(n):
+    disconnect("reload_self", curr_level, "_reload_self")
+    remove_child(curr_level)
+    var res = load("res://Scenes/Levels/" + str(n) + "/Level.tscn")
+    curr_level = res.instance()
+    add_child(curr_level)
+    _reset_vars()
+    curr_level.get_node("Player").connect("player_death", self, "_handle_death")
+    curr_level.get_node("Player").connect("player_victory", self, "_handle_victory")
+    connect("reload_self", curr_level, "_reload_self")
+    reset_camera()
 
 func _handle_victory():
     var n = int($Level.filename.trim_prefix("res://Scenes/Levels/").trim_suffix("/Level.tscn"))
     if n > 0:
-#        print("u wonned / ", n)
-        remove_child(curr_level)
-        var res = load("res://Scenes/Levels/" + str(n+1) + "/Level.tscn")
-        curr_level = res.instance()
-        add_child(curr_level)
-        _reset_vars()
-        curr_level.get_node("Player").connect("player_death", self, "_handle_death")
-        curr_level.get_node("Player").connect("player_victory", self, "_handle_victory")
-        reset_camera()
+        _load_level(n+1)
 
 func _reset_vars():
     is_picked = false
