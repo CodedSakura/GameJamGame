@@ -26,6 +26,7 @@ func _ready():
     $Level/Player.connect("player_victory", self, "_handle_victory")
     curr_level = $Level
     reset_camera()
+    
     current_music = $Music1
     current_music_id = 1
     current_music.volume_db = 0
@@ -85,9 +86,15 @@ func switch_music():
         rand_int = rng.randi_range(1, 4)
     current_music_id = rand_int
     $Tween.interpolate_property(current_music, "volume_db", 0, -80, fade_duration, fade_type, Tween.EASE_IN_OUT)
+    $Tween.connect("tween_completed", self, "stop_music", [current_music])
     current_music = get_node("Music" + str(current_music_id))
+    current_music.play($Bass.get_playback_position())
     $Tween.interpolate_property(current_music, "volume_db", -80, 0, fade_duration, fade_type, Tween.EASE_IN_OUT)
     $Tween.start()
+
+func stop_music(a,b,c):
+    a.stop()
+    $Tween.disconnect("tween_completed", self, "stop_music")
 
 func handle_pausing():
     if Input.is_action_just_pressed("pause") && !is_picked:
