@@ -9,7 +9,7 @@ var is_picked = false
 var offset
 var picked_piece
 var start_pos
-var overlaps = false
+var overlaps = 0
 
 var is_player_picked = false
 var overlaps_player = null
@@ -21,7 +21,6 @@ var curr_level
 func _ready():
     $Level/Player.connect("player_death", self, "_handle_death")
     $Level/Player.connect("player_victory", self, "_handle_victory")
-    connect("reload_self", $Level, "_reload_self")
     curr_level = $Level
     reset_camera()
 
@@ -30,7 +29,6 @@ func _handle_death(ignored):
     _load_level(n)
 
 func _load_level(n):
-    disconnect("reload_self", curr_level, "_reload_self")
     remove_child(curr_level)
     var res = load("res://Scenes/Levels/" + str(n) + "/Level.tscn")
     curr_level = res.instance()
@@ -38,7 +36,6 @@ func _load_level(n):
     _reset_vars()
     curr_level.get_node("Player").connect("player_death", self, "_handle_death")
     curr_level.get_node("Player").connect("player_victory", self, "_handle_victory")
-    connect("reload_self", curr_level, "_reload_self")
     reset_camera()
 
 func _handle_victory():
@@ -51,7 +48,7 @@ func _reset_vars():
     offset = null
     picked_piece = null
     start_pos = null
-    overlaps = false
+    overlaps = 0
     
     is_player_picked = false
     overlaps_player = null
@@ -97,7 +94,7 @@ func handle_drag():
 		
 		is_player_picked = false
 		picked_piece = null
-		overlaps = false
+		overlaps = 0
 
 	if is_picked:
 		var move = get_global_mouse_position() - start_pos + offset
@@ -144,10 +141,10 @@ func reset_camera():
     player_camera.make_current()
 
 func _overlaps_true(area):
-	overlaps = true
+	overlaps += 1
 	
 func _overlaps_false(area):
-	overlaps = false
+	overlaps -= 1
 
 func _overlaps_player_true(area):
 	overlaps_player = picked_piece
