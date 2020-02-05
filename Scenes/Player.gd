@@ -21,6 +21,9 @@ var starting_pos = Vector2(0, 0)
 
 func _ready():
     starting_pos = self.global_position
+    
+func player_death():
+    emit_signal("player_death")
 
 func _physics_process(delta):
     
@@ -31,13 +34,13 @@ func _physics_process(delta):
     for i in get_slide_count():
         var coll = get_slide_collision(i).collider
         if coll.name.find("Lazer_Beam") >= 0:
-            emit_signal("player_death", null)
+            emit_signal("player_death")
         elif coll is TileMap:
             var gpos = self.global_position - coll.global_position
             for j in [Vector2(0, 17), Vector2(0, -15), Vector2(9, 9), Vector2(9, -9), Vector2(-9, 9), Vector2(-9, -9)]:
                 var cell = coll.get_cellv(coll.world_to_map(gpos + j))
                 if cell == 7:
-                    emit_signal("player_death", null)
+                    emit_signal("player_death")
                     break
                 elif cell == 6:
                     emit_signal("player_victory")
@@ -50,7 +53,7 @@ func _physics_process(delta):
     if Input.is_action_pressed("move_left"):
         move_dir -= 1
        
-	
+    
     if !on_ladder: # Physics w/o ladders
     
         velocity.x = move_dir * move_speed
@@ -80,7 +83,7 @@ func _physics_process(delta):
     
     if (facing_right && move_dir < 0) || (!facing_right and move_dir > 0):
         flip()
-   	
+
     if grounded:
         if move_dir == 0:
             play_anim("walk") #idle

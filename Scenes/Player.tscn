@@ -27,19 +27,18 @@ gravity = 10
 jumpVelocity = 230
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -1, 1 )
 shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 1, -1 )
 frames = SubResource( 2 )
 animation = "walk"
 offset = Vector2( -1, 0 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
 drag_margin_left = 0.1
 drag_margin_top = 0.25
 drag_margin_right = 0.1

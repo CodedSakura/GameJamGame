@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/LaserTurretH.png-9065082f56094f087af2ab426079ef8a.stex"
+path="res://.import/Laser3.png-54f39522364d8393cddafd677f79c2d2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Tiles/Lazer/LaserTurretH.png"
-dest_files=[ "res://.import/LaserTurretH.png-9065082f56094f087af2ab426079ef8a.stex" ]
+source_file="res://Assets/Tiles/Laser/Laser3.png"
+dest_files=[ "res://.import/Laser3.png-54f39522364d8393cddafd677f79c2d2.stex" ]
 
 [params]
 
@@ -19,9 +19,9 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=0
+flags/repeat=1
 flags/filter=false
-flags/mipmaps=false
+flags/mipmaps=true
 flags/anisotropic=false
 flags/srgb=2
 process/fix_alpha_border=true
