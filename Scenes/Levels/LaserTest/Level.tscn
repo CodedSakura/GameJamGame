@@ -32,11 +32,13 @@ collision_mask = 0
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Constraint/Area2D"]
 polygon = PoolVector2Array( -112, -168, 0, -168, 0, -296, -112, -296 )
 
-[node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( -60.2, -40 )
+[node name="Player" parent="." groups=[
+"player",
+] instance=ExtResource( 3 )]
+position = Vector2( -72, 0 )
 
 [node name="Piece" parent="." instance=ExtResource( 4 )]
-position = Vector2( -107.2, -88 )
+position = Vector2( -96, -48 )
 
 [node name="Piece2" parent="." instance=ExtResource( 5 )]
-position = Vector2( -224, -88 )
+position = Vector2( -32, -48 )
