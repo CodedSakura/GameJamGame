@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scenes/Modulate.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Tiles.tres" type="TileSet" id=2]
-[ext_resource path="res://Scenes/Lazer/Lazer_Emiter_H.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Laser/Laser_Emiter.tscn" type="PackedScene" id=3]
 
 [node name="Piece" type="Node2D"]
 
@@ -25,11 +25,9 @@ collision_mask = 14
 position = Vector2( 8, 176 )
 polygon = PoolVector2Array( 0, 56, 304, 56, 304, -168, 0, -168 )
 
-[node name="Lazer_Emiter_H" parent="Modulate" instance=ExtResource( 4 )]
+[node name="Laser_Emiter" parent="Modulate" instance=ExtResource( 3 )]
 position = Vector2( 200, 152 )
-scale = Vector2( -1, 1 )
-emit_left = true
-emit_right = false
+direction = 2
 
 [node name="Line2D" type="Line2D" parent="."]
 points = PoolVector2Array( 0, 0, 320, 0, 320, 240, 0, 240, 0, 0 )

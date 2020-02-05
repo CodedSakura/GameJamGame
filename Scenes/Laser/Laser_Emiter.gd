@@ -57,12 +57,10 @@ func _calc_collisions():
     elif direction == Direction.Right:
         v = Vector2(+1, 0)
     
-#    print("> ", "init calc")
+    print("> ", "init calc")
     var nc = _get_next_collision(Vector2(0, 0), v)
-#    print("0> ", nc)
     while nc:
         nc = _get_next_collision(nc[0], nc[1])
-#        print("1> ", nc)
 
 func add_line(v1, v2): # add to Area2D and LineNode
     var l = laser_line.instance()
@@ -80,8 +78,6 @@ func _get_next_collision(vec, dir):
     if rc.is_colliding():
         var coll = rc.get_collider()
         var collv = rc.get_collision_point()
-        print("2> ", coll, collv)
-#        $Line2D.add_point(collv - $Line2D.global_position)
         if coll is TileMap:
             var pos = coll.world_to_map(collv - coll.global_position)
             var tile = coll.get_cellv(pos)
@@ -89,12 +85,13 @@ func _get_next_collision(vec, dir):
             if tile > 5 or tile < 2:
                 add_line(vec, ppos + dir*8)
                 return false
-            add_line(vec, ppos)
             print("2.5> ", vec, ppos, pos, collv)
             var v = Vector2(1 if tile % 2 == 1 else -1, -1 if tile <= 3 else 1)
-            print("3> ", v, dir)
             if dir.x == v.x or dir.y == v.y:
+                add_line(vec, ppos)
                 return [ppos, dir - v]
+            else:
+                add_line(vec, collv - self.global_position)
             return false
         elif coll is KinematicBody2D:
             get_tree().call_group("player", "player_death")
