@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/Modulate.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Tiles.tres" type="TileSet" id=2]
 [ext_resource path="res://Scenes/Ladder.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Laser/Laser_Emiter.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 24, 48 )
@@ -18,7 +19,7 @@ script = ExtResource( 1 )
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( 65536, 5, 0, 65537, 0, 0, 65538, 4, 0, 131072, 0, 0, 131074, 0, 0, 196608, 0, 0, 196610, 0, 0, 262144, 3, 0, 262145, 0, 0, 262146, 2, 0 )
+tile_data = PoolIntArray( 196607, 2, 0, 262144, 3, 0, 262145, 0, 0, 262146, 2, 0 )
 
 [node name="Ladder" type="Area2D" parent="Modulate"]
 visible = false
@@ -36,10 +37,14 @@ collision_mask = 14
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Modulate/Area2D"]
 position = Vector2( 0, 96 )
-polygon = PoolVector2Array( 8, -24, 40, -24, 40, -72, 8, -72 )
+polygon = PoolVector2Array( -8, -24, 40, -24, 40, -72, -8, -72 )
+
+[node name="Laser_Emiter" parent="Modulate" instance=ExtResource( 4 )]
+position = Vector2( -8, 72 )
+direction = 0
 
 [node name="Line2D" type="Line2D" parent="."]
-points = PoolVector2Array( 0, 16, 48, 16, 48, 80, 0, 80, 0, 16 )
+points = PoolVector2Array( -16, 16, 48, 16, 48, 80, -16, 80, -16, 16 )
 width = 2.0
 default_color = Color( 1, 1, 1, 1 )
 texture_mode = 93544976

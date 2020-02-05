@@ -35,10 +35,10 @@ polygon = PoolVector2Array( -112, -168, 0, -168, 0, -296, -112, -296 )
 [node name="Player" parent="." groups=[
 "player",
 ] instance=ExtResource( 3 )]
-position = Vector2( -72, 0 )
+position = Vector2( -72, 16 )
 
 [node name="Piece" parent="." instance=ExtResource( 4 )]
-position = Vector2( -96, -48 )
+position = Vector2( -96, -32 )
 
 [node name="Piece2" parent="." instance=ExtResource( 5 )]
 position = Vector2( -32, -48 )

@@ -15,7 +15,7 @@ script = ExtResource( 1 )
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( -65535, 3, 0, -65534, 2, 0, 1, 3, 0, 2, 2, 0, 65537, 3, 0, 65538, 2, 0, 131072, 5, 0, 131073, 5, 0, 131074, 4, 0, 131075, 4, 0, 196608, 3, 0, 196609, 3, 0, 196610, 2, 0, 196611, 2, 0, 262145, 5, 0, 262146, 4, 0, 327681, 5, 0, 327682, 4, 0, 393217, 5, 0, 393218, 4, 0 )
+tile_data = PoolIntArray( -65535, 3, 0, -65534, 2, 0, 1, 3, 0, 2, 2, 0, 65537, 3, 0, 65538, 2, 0, 131073, 5, 0, 131074, 4, 0, 131075, 4, 0, 196608, 3, 0, 196609, 3, 0, 196610, 2, 0, 196611, 2, 0, 262145, 5, 0, 262146, 4, 0, 327681, 5, 0, 327682, 4, 0, 393217, 5, 0, 393218, 4, 0 )
 
 [node name="Area2D" type="Area2D" parent="Modulate"]
 collision_layer = 2
@@ -36,30 +36,30 @@ joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
 
-[node name="Laser_Emiter_L2" parent="." instance=ExtResource( 3 )]
+[node name="Laser_Emiter_RBB" parent="." instance=ExtResource( 3 )]
 position = Vector2( 72, 104 )
 direction = 2
 
-[node name="Laser_Emiter_L" parent="." instance=ExtResource( 3 )]
+[node name="Laser_Emiter_RBT" parent="." instance=ExtResource( 3 )]
 position = Vector2( 72, 72 )
 direction = 2
 
-[node name="Laser_Emiter_L3" parent="." instance=ExtResource( 3 )]
+[node name="Laser_Emiter_RTB" parent="." instance=ExtResource( 3 )]
 position = Vector2( 72, 24 )
 direction = 2
 
-[node name="Laser_Emiter_L4" parent="." instance=ExtResource( 3 )]
+[node name="Laser_Emiter_RTT" parent="." instance=ExtResource( 3 )]
 position = Vector2( 72, -8 )
 direction = 2
 
-[node name="Laser_Emiter_L5" parent="." instance=ExtResource( 3 )]
+[node name="Laser_Emiter_LBB" parent="." instance=ExtResource( 3 )]
 position = Vector2( -8, 104 )
 
-[node name="Laser_Emiter_L6" parent="." instance=ExtResource( 3 )]
+[node name="Laser_Emiter_LBT" parent="." instance=ExtResource( 3 )]
 position = Vector2( -8, 72 )
 
-[node name="Laser_Emiter_L7" parent="." instance=ExtResource( 3 )]
+[node name="Laser_Emiter_LTB" parent="." instance=ExtResource( 3 )]
 position = Vector2( -8, 24 )
 
-[node name="Laser_Emiter_L8" parent="." instance=ExtResource( 3 )]
+[node name="Laser_Emiter_LTT" parent="." instance=ExtResource( 3 )]
 position = Vector2( -8, -8 )
