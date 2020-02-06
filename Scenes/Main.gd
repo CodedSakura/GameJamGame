@@ -37,7 +37,7 @@ func _ready():
     current_music_id = 1
     current_music.volume_db = 0
 
-func _handle_death():
+func _handle_death(ignored=null):
     won = false
     if !get_tree().paused:
         call_deferred("_load_level", $Level.filename.trim_prefix("res://Scenes/Levels/").trim_suffix("/Level.tscn"))
