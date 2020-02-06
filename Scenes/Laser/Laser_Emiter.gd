@@ -23,8 +23,6 @@ func _ready():
     if not Engine.editor_hint:
         for p in get_tree().get_nodes_in_group("player"):
             $RayCast2D.add_exception(p)
-        $"/root/Transition/AnimationPlayer".play("fade_in")
-        yield($"/root/Transition/AnimationPlayer", "animation_finished")
         $Area2D.connect("body_entered", self, "area_collide")
         _calc_collisions()
 
