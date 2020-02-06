@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/MainCharacter.png" type="Texture" id=2]
 [ext_resource path="res://Assets/bg.png" type="Texture" id=3]
+[ext_resource path="res://Assets/MainCharacterOnLadder.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 7, 14 )
@@ -12,6 +13,11 @@ animations = [ {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
 "name": "walk",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "climb",
 "speed": 5.0
 } ]
 
@@ -29,12 +35,14 @@ jumpVelocity = 230
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 0, -2 )
+position = Vector2( -1, -2 )
 frames = SubResource( 2 )
 animation = "walk"
-offset = Vector2( -1, 0 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
