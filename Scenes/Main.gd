@@ -111,7 +111,7 @@ func stop_music(a,b,c):
     $Tween.disconnect("tween_completed", self, "stop_music")
 
 func handle_pausing():
-    if Input.is_action_just_pressed("pause") && !is_picked:
+    if Input.is_action_just_pressed("pause") && !is_picked && !$"/root/Transition/AnimationPlayer".is_playing():
         get_tree().paused = !get_tree().paused
         Physics2DServer.set_active(true)
         if get_tree().paused:
