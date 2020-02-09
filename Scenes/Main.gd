@@ -77,7 +77,7 @@ func _reset_vars():
     picked_piece = null
     start_pos = null
     overlaps = 0
-	
+    
     is_player_picked = false
     overlaps_player = null
     overlaps_player_really = null
@@ -221,12 +221,17 @@ func handle_reset():
 func handle_cheats():
     if Input.is_action_just_pressed("cheat_activate"):
         entering_cheat = true
+        print("enter cheat...")
     if Input.is_action_just_pressed("cheat_apply"):
+        print("applying cheat ", entered_cheat)
         if entered_cheat.begins_with("level "):
+            print("changing level")
             _load_level(entered_cheat.trim_prefix("level "))
+        else: print("unknown cheat")
         entered_cheat = ""
         entering_cheat = false
     if Input.is_action_just_pressed("cheat_cancel"):
+        print("cancelling cheat")
         entered_cheat = ""
         entering_cheat = false
 
