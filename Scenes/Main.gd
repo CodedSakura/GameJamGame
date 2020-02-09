@@ -28,6 +28,9 @@ signal state_changed
 var entering_cheat = false
 var entered_cheat = ""
 
+var level_pause = false
+var global_pause = false
+
 func _ready():
     $"/root/Transition/AnimationPlayer".play("fade_in")
     yield($"/root/Transition/AnimationPlayer", "animation_finished")
@@ -84,11 +87,13 @@ func _reset_vars():
     player_offset = null
 
 func _process(delta):
-    handle_pausing()
-    handle_drag()
-    handle_music()
-    handle_reset()
-    handle_cheats()
+    if not global_pause:
+        handle_pausing()
+        handle_drag()
+        handle_cheats()
+        handle_reset()
+        handle_music()
+    handle_pause_menu()
 
 var was_in = null
 func handle_music():
@@ -121,9 +126,10 @@ func stop_music(a,b,c):
 
 func handle_pausing():
     if not entering_cheat and Input.is_action_just_pressed("pause") && !is_picked && !$"/root/Transition/AnimationPlayer".is_playing():
-        get_tree().paused = !get_tree().paused
+        level_pause = !level_pause
+        get_tree().paused = level_pause
         Physics2DServer.set_active(true)
-        if get_tree().paused:
+        if level_pause:
             scene_camera.make_current()
             set_tint(false)
         else:
@@ -216,13 +222,13 @@ func _overlaps_player_false(area):
 
 func handle_reset():
     if Input.is_action_just_pressed("reset"):
-        pass
+        _handle_death(null)
 
 func handle_cheats():
     if Input.is_action_just_pressed("cheat_activate"):
         entering_cheat = true
         print("enter cheat...")
-    if Input.is_action_just_pressed("cheat_apply"):
+    if entering_cheat and Input.is_action_just_pressed("cheat_apply"):
         print("applying cheat ", entered_cheat)
         if entered_cheat.begins_with("level "):
             print("changing level")
@@ -230,7 +236,7 @@ func handle_cheats():
         else: print("unknown cheat")
         entered_cheat = ""
         entering_cheat = false
-    if Input.is_action_just_pressed("cheat_cancel"):
+    if entering_cheat and Input.is_action_just_pressed("cheat_cancel"):
         print("cancelling cheat")
         entered_cheat = ""
         entering_cheat = false
@@ -239,3 +245,9 @@ func _input(event):
     if entering_cheat and event is InputEventKey and event.pressed:
         entered_cheat += char(event.unicode)
         print(entered_cheat)
+
+func handle_pause_menu():
+    if Input.is_action_just_pressed("pause_menu"):
+        global_pause = !global_pause
+        $PauseMenu/Root.visible = global_pause
+        get_tree().paused = global_pause or level_pause
