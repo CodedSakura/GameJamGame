@@ -51,6 +51,8 @@ func _load_level(n):
         return
     $"/root/Transition/AnimationPlayer".play("fade_out_alt" if !won else "fade_out")
     yield($"/root/Transition/AnimationPlayer", "animation_finished")
+    curr_level.get_node("Player").disconnect("player_death", self, "_handle_death")
+    curr_level.get_node("Player").disconnect("player_victory", self, "_handle_victory")
     curr_level.free()
     curr_level = res.instance()
     add_child(curr_level)
@@ -75,7 +77,7 @@ func _reset_vars():
     picked_piece = null
     start_pos = null
     overlaps = 0
-    
+	
     is_player_picked = false
     overlaps_player = null
     overlaps_player_really = null
@@ -118,7 +120,7 @@ func stop_music(a,b,c):
     $Tween.disconnect("tween_completed", self, "stop_music")
 
 func handle_pausing():
-    if not entering_cheat and Input.is_action_just_pressed("pause") && !is_picked:
+    if not entering_cheat and Input.is_action_just_pressed("pause") && !is_picked && !$"/root/Transition/AnimationPlayer".is_playing():
         get_tree().paused = !get_tree().paused
         Physics2DServer.set_active(true)
         if get_tree().paused:
@@ -135,13 +137,13 @@ func handle_drag():
         pick_piece(mouse)
         if is_picked && picked_piece == overlaps_player_really:
             pick_player(mouse)
-    if Input.is_action_just_released("mouse_left") && is_picked:
+    elif Input.is_action_just_released("mouse_left") && is_picked:
         is_picked = false
         picked_piece.get_node("Modulate/Area2D").disconnect("area_entered", self, "_overlaps_true")
         picked_piece.get_node("Modulate/Area2D").disconnect("area_exited", self, "_overlaps_false")
         picked_piece.get_node("Modulate/Area2D").disconnect("body_entered", self, "_overlaps_player_true")
         picked_piece.get_node("Modulate/Area2D").disconnect("body_exited", self, "_overlaps_player_false")
-        if overlaps:
+        if overlaps || curr_level.get_node("Player").test_move(curr_level.get_node("Player").transform.translated(Vector2(0, -1)), Vector2(0, 0)):
             picked_piece.position = start_pos
             if is_player_picked:
                 overlaps_player_really = picked_piece
@@ -154,8 +156,7 @@ func handle_drag():
         is_player_picked = false
         picked_piece = null
         overlaps = 0
-
-    if is_picked:
+    elif is_picked:
         var move = get_global_mouse_position() - start_pos + offset
         picked_piece.position = snap(move)
         if is_player_picked && picked_piece == overlaps_player_really:
