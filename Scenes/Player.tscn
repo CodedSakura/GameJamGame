@@ -34,6 +34,7 @@ gravity = 10
 jumpVelocity = 230
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource( 1 )
 __meta__ = {
 "_edit_lock_": true
@@ -51,6 +52,7 @@ drag_margin_left = 0.1
 drag_margin_top = 0.25
 drag_margin_right = 0.1
 drag_margin_bottom = 0.1
+editor_draw_screen = false
 __meta__ = {
 "_edit_lock_": true
 }
