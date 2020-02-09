@@ -25,6 +25,9 @@ var curr_level
 
 signal state_changed
 
+var entering_cheat = false
+var entered_cheat = ""
+
 func _ready():
     $"/root/Transition/AnimationPlayer".play("fade_in")
     yield($"/root/Transition/AnimationPlayer", "animation_finished")
@@ -43,12 +46,14 @@ func _handle_death(ignored=null):
         call_deferred("_load_level", $Level.filename.trim_prefix("res://Scenes/Levels/").trim_suffix("/Level.tscn"))
 
 func _load_level(n):
+    var res = load("res://Scenes/Levels/" + str(n) + "/Level.tscn")
+    if not res:
+        return
     $"/root/Transition/AnimationPlayer".play("fade_out_alt" if !won else "fade_out")
     yield($"/root/Transition/AnimationPlayer", "animation_finished")
     curr_level.get_node("Player").disconnect("player_death", self, "_handle_death")
     curr_level.get_node("Player").disconnect("player_victory", self, "_handle_victory")
     curr_level.free()
-    var res = load("res://Scenes/Levels/" + str(n) + "/Level.tscn")
     curr_level = res.instance()
     add_child(curr_level)
     _reset_vars()
@@ -72,7 +77,7 @@ func _reset_vars():
     picked_piece = null
     start_pos = null
     overlaps = 0
-	
+    
     is_player_picked = false
     overlaps_player = null
     overlaps_player_really = null
@@ -82,6 +87,8 @@ func _process(delta):
     handle_pausing()
     handle_drag()
     handle_music()
+    handle_reset()
+    handle_cheats()
 
 var was_in = null
 func handle_music():
@@ -113,7 +120,7 @@ func stop_music(a,b,c):
     $Tween.disconnect("tween_completed", self, "stop_music")
 
 func handle_pausing():
-    if Input.is_action_just_pressed("pause") && !is_picked && !$"/root/Transition/AnimationPlayer".is_playing():
+    if not entering_cheat and Input.is_action_just_pressed("pause") && !is_picked && !$"/root/Transition/AnimationPlayer".is_playing():
         get_tree().paused = !get_tree().paused
         Physics2DServer.set_active(true)
         if get_tree().paused:
@@ -206,3 +213,29 @@ func _overlaps_player_true(area):
 
 func _overlaps_player_false(area):
     overlaps_player = null
+
+func handle_reset():
+    if Input.is_action_just_pressed("reset"):
+        pass
+
+func handle_cheats():
+    if Input.is_action_just_pressed("cheat_activate"):
+        entering_cheat = true
+        print("enter cheat...")
+    if Input.is_action_just_pressed("cheat_apply"):
+        print("applying cheat ", entered_cheat)
+        if entered_cheat.begins_with("level "):
+            print("changing level")
+            _load_level(entered_cheat.trim_prefix("level "))
+        else: print("unknown cheat")
+        entered_cheat = ""
+        entering_cheat = false
+    if Input.is_action_just_pressed("cheat_cancel"):
+        print("cancelling cheat")
+        entered_cheat = ""
+        entering_cheat = false
+
+func _input(event):
+    if entering_cheat and event is InputEventKey and event.pressed:
+        entered_cheat += char(event.unicode)
+        print(entered_cheat)
