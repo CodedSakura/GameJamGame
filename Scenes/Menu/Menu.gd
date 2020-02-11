@@ -12,7 +12,7 @@ func _on_PlayButton_pressed():
 func _on_CreditsButton_pressed():
     $"/root/Transition/AnimationPlayer".play("fade_out")
     yield($"/root/Transition/AnimationPlayer", "animation_finished")
-    get_tree().change_scene("res://Scenes/Credits.tscn")
+    get_tree().change_scene("res://Scenes/Menu/Credits.tscn")
 
 
 func _on_ExitButton_pressed():
@@ -22,8 +22,13 @@ func _on_ExitButton_pressed():
 
 
 func _on_LevelSelectButton_pressed():
-    pass # Replace with function body.
+    $"/root/Transition/AnimationPlayer".play("fade_out")
+    yield($"/root/Transition/AnimationPlayer", "animation_finished")
+    get_tree().change_scene("res://Scenes/Menu/LevelSelect.tscn")
 
 
 func _on_OptionsButton_pressed():
-    pass # Replace with function body.
+    print("pressed")
+    $"/root/Transition/AnimationPlayer".play("fade_out")
+    yield($"/root/Transition/AnimationPlayer", "animation_finished")
+    get_tree().change_scene("res://Scenes/Menu/Options.tscn")

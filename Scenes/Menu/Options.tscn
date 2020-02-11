@@ -1,0 +1,128 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/Menu/BackButton.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Menu/BackButtonHover.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Background.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/Menu/Options.gd" type="Script" id=4]
+
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 320, 240 )
+
+[node name="Options" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -25.5
+margin_top = 9.0
+margin_right = 25.5
+margin_bottom = 23.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Options"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackButton" type="TextureButton" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -50.0
+margin_top = -56.0
+margin_right = 50.0
+margin_bottom = -6.0
+texture_normal = ExtResource( 1 )
+texture_hover = ExtResource( 2 )
+
+[node name="SFXToggle" type="TextureButton" parent="."]
+margin_left = 9.48767
+margin_top = 55.9014
+margin_right = 155.488
+margin_bottom = 85.9014
+toggle_mode = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="SFXToggle"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+toggle_mode = true
+text = "[ ] Toggle SFX"
+align = 0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="MusicToggle" type="TextureButton" parent="."]
+margin_left = 10.0
+margin_top = 99.0
+margin_right = 156.0
+margin_bottom = 129.0
+toggle_mode = true
+
+[node name="Button" type="Button" parent="MusicToggle"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+toggle_mode = true
+text = "[ ] Toggle Music"
+align = 0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="FullScreenToggle" type="TextureButton" parent="."]
+margin_left = 9.9507
+margin_top = 140.025
+margin_right = 155.951
+margin_bottom = 169.025
+toggle_mode = true
+
+[node name="Button" type="Button" parent="FullScreenToggle"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+toggle_mode = true
+text = "[ ] Toggle Fullscreen"
+align = 0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="ControlsButton" type="TextureButton" parent="."]
+margin_left = 228.537
+margin_top = 93.3398
+margin_right = 312.537
+margin_bottom = 129.34
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="ControlsButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+text = "Controls"
+__meta__ = {
+"_edit_lock_": true
+}
+[connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]
+[connection signal="pressed" from="SFXToggle" to="." method="_on_SFXToggle_pressed"]
+[connection signal="pressed" from="MusicToggle" to="." method="_on_MusicToggle_pressed"]
+[connection signal="pressed" from="FullScreenToggle" to="." method="_on_FullScreenToggle_pressed"]
+[connection signal="pressed" from="ControlsButton" to="." method="_on_ControlsButton_pressed"]
