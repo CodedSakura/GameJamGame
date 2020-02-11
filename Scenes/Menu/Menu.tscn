@@ -36,18 +36,18 @@ texture_normal = ExtResource( 2 )
 texture_hover = ExtResource( 5 )
 
 [node name="CreditsButton" type="TextureButton" parent="."]
-margin_left = 208.348
-margin_top = 35.6914
-margin_right = 308.348
-margin_bottom = 85.6914
+margin_left = 207.861
+margin_top = 14.2337
+margin_right = 307.861
+margin_bottom = 64.2337
 texture_normal = ExtResource( 4 )
 texture_hover = ExtResource( 8 )
 
 [node name="ExitButton" type="TextureButton" parent="."]
 margin_left = 207.995
-margin_top = 87.5657
+margin_top = 77.8122
 margin_right = 307.996
-margin_bottom = 137.566
+margin_bottom = 127.812
 texture_normal = ExtResource( 6 )
 texture_hover = ExtResource( 7 )
 
@@ -76,6 +76,7 @@ __meta__ = {
 }
 
 [node name="OptionsButton" type="TextureButton" parent="."]
+visible = false
 margin_left = 213.488
 margin_top = 8.9507
 margin_right = 306.488

@@ -54,12 +54,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureButton" type="TextureButton" parent="GridContainer"]
+[node name="L1Button" type="TextureButton" parent="GridContainer"]
 margin_right = 32.0
 margin_bottom = 32.0
 texture_normal = ExtResource( 5 )
 
-[node name="Button" type="Button" parent="GridContainer/TextureButton"]
+[node name="Button" type="Button" parent="GridContainer/L1Button"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 1
@@ -70,13 +70,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureButton2" type="TextureButton" parent="GridContainer"]
+[node name="L2Button" type="TextureButton" parent="GridContainer"]
 margin_left = 45.0
 margin_right = 77.0
 margin_bottom = 32.0
 texture_normal = ExtResource( 5 )
 
-[node name="Button" type="Button" parent="GridContainer/TextureButton2"]
+[node name="Button" type="Button" parent="GridContainer/L2Button"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 1
@@ -87,13 +87,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureButton3" type="TextureButton" parent="GridContainer"]
+[node name="L3Button" type="TextureButton" parent="GridContainer"]
 margin_left = 90.0
 margin_right = 122.0
 margin_bottom = 32.0
 texture_normal = ExtResource( 5 )
 
-[node name="Button" type="Button" parent="GridContainer/TextureButton3"]
+[node name="Button" type="Button" parent="GridContainer/L3Button"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 1
@@ -104,13 +104,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureButton4" type="TextureButton" parent="GridContainer"]
+[node name="L4Button" type="TextureButton" parent="GridContainer"]
 margin_left = 135.0
 margin_right = 167.0
 margin_bottom = 32.0
 texture_normal = ExtResource( 5 )
 
-[node name="Button" type="Button" parent="GridContainer/TextureButton4"]
+[node name="Button" type="Button" parent="GridContainer/L4Button"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 1
@@ -121,13 +121,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureButton5" type="TextureButton" parent="GridContainer"]
+[node name="L5Button" type="TextureButton" parent="GridContainer"]
 margin_left = 180.0
 margin_right = 212.0
 margin_bottom = 32.0
 texture_normal = ExtResource( 5 )
 
-[node name="Button" type="Button" parent="GridContainer/TextureButton5"]
+[node name="Button" type="Button" parent="GridContainer/L5Button"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 1
@@ -138,13 +138,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureButton6" type="TextureButton" parent="GridContainer"]
+[node name="L6Button" type="TextureButton" parent="GridContainer"]
 margin_top = 45.0
 margin_right = 32.0
 margin_bottom = 77.0
 texture_normal = ExtResource( 5 )
 
-[node name="Button" type="Button" parent="GridContainer/TextureButton6"]
+[node name="Button" type="Button" parent="GridContainer/L6Button"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 1
@@ -155,14 +155,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureButton7" type="TextureButton" parent="GridContainer"]
+[node name="L7Button" type="TextureButton" parent="GridContainer"]
 margin_left = 45.0
 margin_top = 45.0
 margin_right = 77.0
 margin_bottom = 77.0
 texture_normal = ExtResource( 5 )
 
-[node name="Button" type="Button" parent="GridContainer/TextureButton7"]
+[node name="Button" type="Button" parent="GridContainer/L7Button"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 1
@@ -173,14 +173,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureButton8" type="TextureButton" parent="GridContainer"]
+[node name="L8Button" type="TextureButton" parent="GridContainer"]
 margin_left = 90.0
 margin_top = 45.0
 margin_right = 122.0
 margin_bottom = 77.0
 texture_normal = ExtResource( 5 )
 
-[node name="Button" type="Button" parent="GridContainer/TextureButton8"]
+[node name="Button" type="Button" parent="GridContainer/L8Button"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 1
@@ -191,14 +191,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureButton9" type="TextureButton" parent="GridContainer"]
+[node name="L9Button" type="TextureButton" parent="GridContainer"]
 margin_left = 135.0
 margin_top = 45.0
 margin_right = 167.0
 margin_bottom = 77.0
 texture_normal = ExtResource( 5 )
 
-[node name="Button" type="Button" parent="GridContainer/TextureButton9"]
+[node name="Button" type="Button" parent="GridContainer/L9Button"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 1
