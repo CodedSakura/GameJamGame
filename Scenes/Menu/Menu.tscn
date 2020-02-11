@@ -1,0 +1,100 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Scenes/Menu/Menu.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Menu/PlayButton.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Menu/MenuScreen.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Menu/CreditsButton.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Menu/PlayButtonHover.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Menu/ExitButton.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Menu/ExitButtonHover.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Menu/CreditsButtonHover.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Music/menu.ogg" type="AudioStream" id=9]
+
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 320, 240 )
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BGPanel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="PlayButton" type="TextureButton" parent="."]
+margin_left = 12.0
+margin_top = 122.0
+margin_right = 124.0
+margin_bottom = 172.0
+texture_normal = ExtResource( 2 )
+texture_hover = ExtResource( 5 )
+
+[node name="CreditsButton" type="TextureButton" parent="."]
+margin_left = 208.348
+margin_top = 35.6914
+margin_right = 308.348
+margin_bottom = 85.6914
+texture_normal = ExtResource( 4 )
+texture_hover = ExtResource( 8 )
+
+[node name="ExitButton" type="TextureButton" parent="."]
+margin_left = 207.995
+margin_top = 87.5657
+margin_right = 307.996
+margin_bottom = 137.566
+texture_normal = ExtResource( 6 )
+texture_hover = ExtResource( 7 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+autoplay = true
+
+[node name="LevelSelectButton" type="TextureButton" parent="."]
+margin_left = 15.0
+margin_top = 190.0
+margin_right = 117.0
+margin_bottom = 230.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="LevelSelectButton"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+text = "Level Select"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="OptionsButton" type="TextureButton" parent="."]
+margin_left = 213.488
+margin_top = 8.9507
+margin_right = 306.488
+margin_bottom = 29.9507
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="OptionsButton"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+text = "Options"
+__meta__ = {
+"_edit_lock_": true
+}
+[connection signal="pressed" from="PlayButton" to="." method="_on_PlayButton_pressed"]
+[connection signal="pressed" from="CreditsButton" to="." method="_on_CreditsButton_pressed"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_ExitButton_pressed"]
+[connection signal="pressed" from="LevelSelectButton" to="." method="_on_LevelSelectButton_pressed"]
+[connection signal="pressed" from="OptionsButton" to="." method="_on_OptionsButton_pressed"]
