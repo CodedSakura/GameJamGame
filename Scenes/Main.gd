@@ -32,8 +32,9 @@ var level_pause = false
 var global_pause = false
 
 func _ready():
-    $"/root/Transition/AnimationPlayer".play("fade_in")
-    yield($"/root/Transition/AnimationPlayer", "animation_finished")
+    _load_level(globals.load_level, true)
+#    $"/root/Transition/AnimationPlayer".play("fade_in")
+#    yield($"/root/Transition/AnimationPlayer", "animation_finished")
     $Level/Player.connect("player_death", self, "_handle_death")
     $Level/Player.connect("player_victory", self, "_handle_victory")
     curr_level = $Level
@@ -48,15 +49,16 @@ func _handle_death(ignored=null):
     if !get_tree().paused:
         call_deferred("_load_level", $Level.filename.trim_prefix("res://Scenes/Levels/").trim_suffix("/Level.tscn"))
 
-func _load_level(n):
+func _load_level(n, skip_fadeout=false):
     var res = load("res://Scenes/Levels/" + str(n) + "/Level.tscn")
     if not res:
         return
-    $"/root/Transition/AnimationPlayer".play("fade_out_alt" if !won else "fade_out")
-    yield($"/root/Transition/AnimationPlayer", "animation_finished")
-    curr_level.get_node("Player").disconnect("player_death", self, "_handle_death")
-    curr_level.get_node("Player").disconnect("player_victory", self, "_handle_victory")
-    curr_level.free()
+    if not skip_fadeout:
+        $"/root/Transition/AnimationPlayer".play("fade_out_alt" if !won else "fade_out")
+        yield($"/root/Transition/AnimationPlayer", "animation_finished")
+        curr_level.get_node("Player").disconnect("player_death", self, "_handle_death")
+        curr_level.get_node("Player").disconnect("player_victory", self, "_handle_victory")
+        curr_level.free()
     curr_level = res.instance()
     add_child(curr_level)
     _reset_vars()
@@ -70,7 +72,10 @@ func _handle_victory():
     won = true
     var n = int($Level.filename.trim_prefix("res://Scenes/Levels/").trim_suffix("/Level.tscn"))
     if n == 9:
-        get_tree().change_scene("res://Scenes/Credits.tscn")
+        $"/root/Transition/AnimationPlayer".play("fade_out")
+        yield($"/root/Transition/AnimationPlayer", "animation_finished")
+        get_tree().change_scene("res://Scenes/Menu/Credits.tscn")
+        globals.load_level = "1"
     elif n > 0:
         call_deferred("_load_level", n+1)
 
@@ -209,20 +214,17 @@ func reset_camera():
     player_camera.make_current()
 
 func _overlaps_true(area):
-    overlaps += 1
-    
+    overlaps += 1   
 func _overlaps_false(area):
     overlaps -= 1
-
 func _overlaps_player_true(area):
     overlaps_player = picked_piece
-
 func _overlaps_player_false(area):
     overlaps_player = null
 
 func handle_reset():
     if Input.is_action_just_pressed("reset"):
-        _handle_death(null)
+        _handle_death()
 
 func handle_cheats():
     if Input.is_action_just_pressed("cheat_activate"):
@@ -246,8 +248,24 @@ func _input(event):
         entered_cheat += char(event.unicode)
         print(entered_cheat)
 
+func _toggle_pause():
+    global_pause = !global_pause
+    $PauseMenu/Root.visible = global_pause
+    get_tree().paused = global_pause or level_pause
+
 func handle_pause_menu():
     if Input.is_action_just_pressed("pause_menu"):
-        global_pause = !global_pause
-        $PauseMenu/Root.visible = global_pause
-        get_tree().paused = global_pause or level_pause
+        _toggle_pause()
+
+func _on_PauseMenu_RestartButton_pressed():
+    _toggle_pause()
+    call_deferred("_load_level", $Level.filename.trim_prefix("res://Scenes/Levels/").trim_suffix("/Level.tscn"))
+
+func _on_PauseMenu_ResumeButton_pressed():
+    _toggle_pause()
+    
+func _on_PauseMenu_ExitButton_pressed():
+    _toggle_pause()
+    $"/root/Transition/AnimationPlayer".play("fade_out")
+    yield($"/root/Transition/AnimationPlayer", "animation_finished")
+    get_tree().change_scene("res://Scenes/Menu/Menu.tscn")
