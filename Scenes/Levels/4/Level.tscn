@@ -17,7 +17,7 @@ script = ExtResource( 1 )
 zoom = Vector2( 4, 4 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( -488, 96 )
+position = Vector2( -488, 32 )
 
 [node name="Sprite" type="Sprite" parent="."]
 z_index = -100
@@ -26,7 +26,7 @@ texture = ExtResource( 3 )
 [node name="Constraint" type="Polygon2D" parent="."]
 position = Vector2( -432, 48 )
 color = Color( 0, 0, 0, 0.196078 )
-polygon = PoolVector2Array( -248, -552, 1184, -568, 1416, -160, -112, -160, -112, 80, 976, 80, 976, -160, 1344, -160, 1248, 480, -288, 480 )
+polygon = PoolVector2Array( -248, -552, 1184, -568, 1416, -128, -128, -128, -128, 32, 992, 32, 992, -128, 1352, -128, 1248, 480, -288, 480 )
 script = ExtResource( 4 )
 
 [node name="Area2D" type="Area2D" parent="Constraint"]
@@ -39,10 +39,10 @@ position = Vector2( -128, 0 )
 polygon = PoolVector2Array( -328, -160, 1104, -160, 1104, 80, 16, 80, 16, -160, -328, -160, -240, 432, 1344, 480, 1432, -624, -344, -624 )
 
 [node name="Piece" parent="." instance=ExtResource( 5 )]
-position = Vector2( -544, -112 )
+position = Vector2( -544, -176 )
 
 [node name="Piece2" parent="." instance=ExtResource( 6 )]
-position = Vector2( 0, -112 )
+position = Vector2( 0, -176 )
 
 [node name="Piece3" parent="." instance=ExtResource( 7 )]
-position = Vector2( -272, -112 )
+position = Vector2( -272, -176 )

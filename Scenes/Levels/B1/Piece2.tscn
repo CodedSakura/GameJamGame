@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Modulate.gd" type="Script" id=1]
+[ext_resource path="res://Resources/Tiles.tres" type="TileSet" id=2]
+
+[node name="Piece" type="Node2D"]
+
+[node name="Modulate" type="Node2D" parent="." groups=[
+"modulate",
+]]
+script = ExtResource( 1 )
+
+[node name="TileMap" type="TileMap" parent="Modulate"]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 393232, 0, 0, 393233, 0, 0, 393234, 0, 0, 458768, 0, 0, 458769, 0, 0, 458770, 0, 0, 524304, 0, 0, 524305, 0, 0, 524306, 0, 0, 589840, 0, 0, 589841, 0, 0, 589842, 0, 0 )
+
+[node name="Area2D" type="Area2D" parent="Modulate"]
+collision_layer = 2
+collision_mask = 14
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Modulate/Area2D"]
+position = Vector2( 35.9336, 186.291 )
+polygon = PoolVector2Array( 221.976, -28.2866, 266.179, -28.1611, 265.892, -88.0847, 221.892, -88.4082 )
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PoolVector2Array( 256, 96, 304, 96, 304, 160, 256, 160, 256, 96 )
+width = 2.0
+default_color = Color( 1, 1, 1, 1 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2

@@ -14,7 +14,7 @@ script = ExtResource( 1 )
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( 917504, 0, 0, 917505, 0, 0, 917506, 0, 0, 917507, 0, 0, 917508, 0, 0, 917509, 0, 0, 917510, 0, 0, 917511, 0, 0, 917512, 0, 0, 917513, 0, 0, 917514, 0, 0, 917515, 0, 0, 917516, 0, 0, 917517, 0, 0, 917518, 0, 0, 917519, 0, 0, 917520, 0, 0 )
+tile_data = PoolIntArray( 458752, 0, 0, 458753, 0, 0, 458754, 0, 0, 458755, 0, 0, 458756, 0, 0, 458757, 0, 0, 458758, 0, 0, 458759, 0, 0, 458760, 0, 0, 458761, 0, 0, 458762, 0, 0, 458763, 0, 0, 458764, 0, 0, 458765, 0, 0, 458766, 0, 0, 458767, 0, 0, 458768, 0, 0, 524288, 2, 0, 524304, 3, 0, 851968, 4, 0, 851984, 5, 0, 917504, 0, 0, 917505, 0, 0, 917506, 0, 0, 917507, 0, 0, 917508, 0, 0, 917509, 0, 0, 917510, 0, 0, 917511, 0, 0, 917512, 0, 0, 917513, 0, 0, 917514, 0, 0, 917515, 0, 0, 917516, 0, 0, 917517, 0, 0, 917518, 0, 0, 917519, 0, 0, 917520, 0, 0 )
 
 [node name="Area2D" type="Area2D" parent="Modulate"]
 collision_layer = 2
@@ -22,10 +22,10 @@ collision_mask = 14
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Modulate/Area2D"]
 position = Vector2( 8, 8 )
-polygon = PoolVector2Array( 0, 0, 0, 224, 256, 224, 256, 0 )
+polygon = PoolVector2Array( 0, 112, 0, 224, 256, 224, 256, 112 )
 
 [node name="Line2D" type="Line2D" parent="."]
-points = PoolVector2Array( 0, 0, 272, 0, 272, 240, 0, 240, 0, 0 )
+points = PoolVector2Array( 0, 112, 272, 112, 272, 240, 0, 240, 0, 112 )
 width = 2.0
 default_color = Color( 1, 1, 1, 1 )
 texture_mode = 1065353216

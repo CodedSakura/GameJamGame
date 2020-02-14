@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scenes/Menu/Menu.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Menu/PlayButton.png" type="Texture" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://Assets/Menu/ExitButtonHover.png" type="Texture" id=7]
 [ext_resource path="res://Assets/Menu/CreditsButtonHover.png" type="Texture" id=8]
 [ext_resource path="res://Assets/Music/menu.ogg" type="AudioStream" id=9]
+[ext_resource path="res://Assets/Menu/LevelSelectButtonHover.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Menu/LevelSelectButton.png" type="Texture" id=11]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 3 )
@@ -56,22 +58,13 @@ stream = ExtResource( 9 )
 autoplay = true
 
 [node name="LevelSelectButton" type="TextureButton" parent="."]
-margin_left = 15.0
-margin_top = 190.0
-margin_right = 117.0
-margin_bottom = 230.0
+margin_left = 11.0
+margin_top = 182.0
+margin_right = 113.0
+margin_bottom = 232.0
+texture_normal = ExtResource( 11 )
+texture_hover = ExtResource( 10 )
 __meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Button" type="Button" parent="LevelSelectButton"]
-show_behind_parent = true
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 1
-text = "Level Select"
-__meta__ = {
-"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 

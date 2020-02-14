@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scenes/Level.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/bg.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/Levels/B2/Piece2.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Constraint.gd" type="Script" id=5]
+[ext_resource path="res://Scenes/Levels/B2/Piece.tscn" type="PackedScene" id=6]
+
+[node name="Level" type="Node2D" groups=[
+"modulate",
+]]
+script = ExtResource( 1 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2( 2, 2 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 72, 48 )
+
+[node name="Sprite" type="Sprite" parent="."]
+visible = false
+z_index = -100
+texture = ExtResource( 3 )
+
+[node name="Piece" parent="." instance=ExtResource( 4 )]
+position = Vector2( -304, -144 )
+
+[node name="Constraint" type="Polygon2D" parent="."]
+position = Vector2( 480, -72 )
+color = Color( 0, 0, 0, 0.196078 )
+polygon = PoolVector2Array( -832, -184, -144, -184, -112, 328, -816, 320, -912, -88, -656, -88, -656, 216, -336, 216, -336, -88, -912, -88 )
+script = ExtResource( 5 )
+
+[node name="Area2D" type="Area2D" parent="Constraint"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Constraint/Area2D"]
+visible = false
+polygon = PoolVector2Array( -928, 504, -656, 504, -656, -88, -336, -88, -336, 224, -656, 224, -656, 504, 352, 504, 352, -456, -928, -456 )
+
+[node name="Piece2" parent="." instance=ExtResource( 6 )]
+position = Vector2( -176, -160 )
+
+[node name="Piece3" parent="." instance=ExtResource( 4 )]
+position = Vector2( -288, -128 )

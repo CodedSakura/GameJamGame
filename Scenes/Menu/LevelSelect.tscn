@@ -1,10 +1,22 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Scenes/Menu/LevelSelect.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Menu/BackButton.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Menu/BackButtonHover.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Background.png" type="Texture" id=4]
-[ext_resource path="res://Assets/Menu/LevelFrame.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Menu/LevelSelectTitle.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Menu/LevelButton6.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Menu/LevelButton4.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Menu/LevelButton9.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Menu/LevelButton3.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Menu/LevelButton1.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Menu/LevelButtonB1.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Menu/LevelButton8.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Menu/LevelButton2.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Menu/LevelButtonB2.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Menu/LevelButton5.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Menu/LevelButton7.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Menu/LevelButton10.png" type="Texture" id=17]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 4 )
@@ -23,199 +35,118 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 custom_styles/panel = SubResource( 1 )
 
-[node name="BackButton" type="TextureButton" parent="."]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -50.0
-margin_top = -57.0
-margin_right = 50.0
-margin_bottom = -7.0
-texture_normal = ExtResource( 2 )
-texture_hover = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="GridContainer" type="GridContainer" parent="."]
-anchor_left = 0.041
-anchor_top = 0.167
-anchor_right = 0.959
-anchor_bottom = 0.733
-margin_left = 42.88
-margin_top = -2.08
-margin_right = -38.88
-margin_bottom = -1.92001
-custom_constants/vseparation = 13
-custom_constants/hseparation = 13
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -133.0
+margin_top = -65.0
+margin_right = 133.0
+margin_bottom = 93.0
 columns = 5
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="L1Button" type="TextureButton" parent="GridContainer"]
-margin_right = 32.0
-margin_bottom = 32.0
-texture_normal = ExtResource( 5 )
-
-[node name="Button" type="Button" parent="GridContainer/L1Button"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 1
-text = "1"
-flat = true
+margin_right = 50.0
+margin_bottom = 50.0
+texture_normal = ExtResource( 10 )
 __meta__ = {
-"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="L2Button" type="TextureButton" parent="GridContainer"]
-margin_left = 45.0
-margin_right = 77.0
-margin_bottom = 32.0
-texture_normal = ExtResource( 5 )
-
-[node name="Button" type="Button" parent="GridContainer/L2Button"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 1
-text = "2"
-flat = true
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
+margin_left = 54.0
+margin_right = 104.0
+margin_bottom = 50.0
+texture_normal = ExtResource( 13 )
 
 [node name="L3Button" type="TextureButton" parent="GridContainer"]
-margin_left = 90.0
-margin_right = 122.0
-margin_bottom = 32.0
-texture_normal = ExtResource( 5 )
-
-[node name="Button" type="Button" parent="GridContainer/L3Button"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 1
-text = "3"
-flat = true
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
+margin_left = 108.0
+margin_right = 158.0
+margin_bottom = 50.0
+texture_normal = ExtResource( 9 )
 
 [node name="L4Button" type="TextureButton" parent="GridContainer"]
-margin_left = 135.0
-margin_right = 167.0
-margin_bottom = 32.0
-texture_normal = ExtResource( 5 )
-
-[node name="Button" type="Button" parent="GridContainer/L4Button"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 1
-text = "4"
-flat = true
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
+margin_left = 162.0
+margin_right = 212.0
+margin_bottom = 50.0
+texture_normal = ExtResource( 7 )
 
 [node name="L5Button" type="TextureButton" parent="GridContainer"]
-margin_left = 180.0
-margin_right = 212.0
-margin_bottom = 32.0
-texture_normal = ExtResource( 5 )
-
-[node name="Button" type="Button" parent="GridContainer/L5Button"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 1
-text = "5"
-flat = true
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
+margin_left = 216.0
+margin_right = 266.0
+margin_bottom = 50.0
+texture_normal = ExtResource( 15 )
 
 [node name="L6Button" type="TextureButton" parent="GridContainer"]
-margin_top = 45.0
-margin_right = 32.0
-margin_bottom = 77.0
-texture_normal = ExtResource( 5 )
-
-[node name="Button" type="Button" parent="GridContainer/L6Button"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 1
-text = "6"
-flat = true
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
+margin_top = 54.0
+margin_right = 50.0
+margin_bottom = 104.0
+texture_normal = ExtResource( 6 )
 
 [node name="L7Button" type="TextureButton" parent="GridContainer"]
-margin_left = 45.0
-margin_top = 45.0
-margin_right = 77.0
-margin_bottom = 77.0
-texture_normal = ExtResource( 5 )
-
-[node name="Button" type="Button" parent="GridContainer/L7Button"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 1
-text = "7"
-flat = true
+margin_left = 54.0
+margin_top = 54.0
+margin_right = 104.0
+margin_bottom = 104.0
+texture_normal = ExtResource( 16 )
 __meta__ = {
-"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="L8Button" type="TextureButton" parent="GridContainer"]
-margin_left = 90.0
-margin_top = 45.0
-margin_right = 122.0
-margin_bottom = 77.0
-texture_normal = ExtResource( 5 )
-
-[node name="Button" type="Button" parent="GridContainer/L8Button"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 1
-text = "8"
-flat = true
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
+margin_left = 108.0
+margin_top = 54.0
+margin_right = 158.0
+margin_bottom = 104.0
+texture_normal = ExtResource( 12 )
 
 [node name="L9Button" type="TextureButton" parent="GridContainer"]
-margin_left = 135.0
-margin_top = 45.0
-margin_right = 167.0
-margin_bottom = 77.0
-texture_normal = ExtResource( 5 )
+margin_left = 162.0
+margin_top = 54.0
+margin_right = 212.0
+margin_bottom = 104.0
+texture_normal = ExtResource( 8 )
 
-[node name="Button" type="Button" parent="GridContainer/L9Button"]
-anchor_right = 1.0
+[node name="L10Button" type="TextureButton" parent="GridContainer"]
+margin_left = 216.0
+margin_top = 54.0
+margin_right = 266.0
+margin_bottom = 104.0
+texture_normal = ExtResource( 17 )
+
+[node name="B1Button" type="TextureButton" parent="GridContainer"]
+margin_top = 108.0
+margin_right = 50.0
+margin_bottom = 158.0
+texture_normal = ExtResource( 11 )
+
+[node name="B2Button" type="TextureButton" parent="GridContainer"]
+margin_left = 54.0
+margin_top = 108.0
+margin_right = 104.0
+margin_bottom = 158.0
+texture_normal = ExtResource( 14 )
+
+[node name="BackButton" type="TextureButton" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-mouse_filter = 1
-text = "9"
-flat = true
+margin_left = 13.1569
+margin_top = -54.6167
+margin_right = 113.157
+margin_bottom = -4.61673
+texture_normal = ExtResource( 2 )
+texture_hover = ExtResource( 3 )
 __meta__ = {
-"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="."]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -38.5
-margin_top = 8.0
-margin_right = 38.5
-margin_bottom = 22.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Level Select"
+[node name="LevelSelectTitle" type="Sprite" parent="."]
+position = Vector2( 158.171, 25.9513 )
+texture = ExtResource( 5 )
 [connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]
