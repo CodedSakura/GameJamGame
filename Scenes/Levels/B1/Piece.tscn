@@ -27,17 +27,14 @@ polygon = PoolVector2Array( 0, 392, 64, 392, 64, 24, 64, -88, 128, -88, 128, 136
 
 [node name="Laser_Emiter" parent="Modulate" instance=ExtResource( 3 )]
 position = Vector2( 56, 264 )
-max_distance = 1000.0
 
 [node name="Laser_Emiter2" parent="Modulate" instance=ExtResource( 3 )]
 position = Vector2( 216, 152 )
 direction = 2
-max_distance = 1000.0
 
 [node name="Laser_Emiter3" parent="Modulate" instance=ExtResource( 3 )]
 position = Vector2( 248, 152 )
 direction = 0
-max_distance = 1000.0
 
 [node name="Line2D" type="Line2D" parent="."]
 points = PoolVector2Array( 0, 0, 320, 0, 320, 576, 0, 576, 0, 0 )

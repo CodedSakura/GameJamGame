@@ -42,6 +42,8 @@ func state_changed():
         _calc_collisions()
 
 func _calc_collisions():
+    if not self.visible:
+        return
     clear_lines()
     var v = direction_dict[direction][2]
     var nc = _get_next_collision(Vector2(0, 0), v)
@@ -58,7 +60,6 @@ func clear_lines():
 func area_collide(what):
     if what is KinematicBody2D and what in get_tree().get_nodes_in_group("player"):
         get_tree().call_group("player", "player_death")
-#    print(self.name, " > owie w/ ", what, " // ", what.name)
 
 func add_line(v1, v2): # add to Area2D and LineNode
     var l = laser_line.instance()
@@ -68,7 +69,6 @@ func add_line(v1, v2): # add to Area2D and LineNode
     $LineNode.add_child(l)
     
     var vdiff = v1 - v2
-#    print(vdiff)
     var c = RectangleShape2D.new()
     if vdiff.x:
         c.extents = Vector2(vdiff.x / 2, 4)
@@ -101,7 +101,5 @@ func _get_next_collision(vec, dir):
             else:
                 add_line(vec, collv - self.global_position)
             return false
-#        elif coll is KinematicBody2D:
-#            get_tree().call_group("player", "player_death")
     else:
         add_line(vec, vec + dir*max_distance)

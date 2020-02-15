@@ -35,6 +35,7 @@ func _ready():
     _load_level(globals.load_level, true)
 #    $"/root/Transition/AnimationPlayer".play("fade_in")
 #    yield($"/root/Transition/AnimationPlayer", "animation_finished")
+    print("> ", $Level, " ; ", $Level/Player)
     $Level/Player.connect("player_death", self, "_handle_death")
     $Level/Player.connect("player_victory", self, "_handle_victory")
     curr_level = $Level
@@ -70,14 +71,18 @@ func _load_level(n, skip_fadeout=false):
 
 func _handle_victory():
     won = true
-    var n = int($Level.filename.trim_prefix("res://Scenes/Levels/").trim_suffix("/Level.tscn"))
-    if n == 9:
+    var n = $Level.filename.trim_prefix("res://Scenes/Levels/").trim_suffix("/Level.tscn")
+    if n == "10":
+        _load_level("B1")
+    elif n == "B1":
+        _load_level("B2")
+    elif n == "B2":
         $"/root/Transition/AnimationPlayer".play("fade_out")
         yield($"/root/Transition/AnimationPlayer", "animation_finished")
         get_tree().change_scene("res://Scenes/Menu/Credits.tscn")
         globals.load_level = "1"
-    elif n > 0:
-        call_deferred("_load_level", n+1)
+    elif int(n) > 0:
+        call_deferred("_load_level", int(n)+1)
 
 func _reset_vars():
     is_picked = false

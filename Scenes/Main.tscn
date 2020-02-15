@@ -36,8 +36,8 @@ volume_db = -80.0
 [node name="Tween" type="Tween" parent="."]
 
 [node name="PauseMenu" parent="." instance=ExtResource( 8 )]
-[connection signal="pressed" from="PauseMenu/Root/ResumeButton" to="." method="_on_PauseMenu_ResumeButton_pressed"]
-[connection signal="pressed" from="PauseMenu/Root/RestartButton" to="." method="_on_PauseMenu_RestartButton_pressed"]
-[connection signal="pressed" from="PauseMenu/Root/ExitButton" to="." method="_on_PauseMenu_ExitButton_pressed"]
+[connection signal="pressed" from="PauseMenu/Root/Panel/ResumeButton" to="." method="_on_PauseMenu_ResumeButton_pressed"]
+[connection signal="pressed" from="PauseMenu/Root/Panel/RestartButton" to="." method="_on_PauseMenu_RestartButton_pressed"]
+[connection signal="pressed" from="PauseMenu/Root/Panel/ExitButton" to="." method="_on_PauseMenu_ExitButton_pressed"]
 
 [editable path="PauseMenu"]

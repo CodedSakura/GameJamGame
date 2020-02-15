@@ -16,8 +16,8 @@ func _ready():
         $GridContainer/L8Button: "8",
         $GridContainer/L9Button: "9",
         $GridContainer/L10Button: "10",
-        $GridContainer/B1Button: "1B",
-        $GridContainer/B2Button: "2B",
+        $GridContainer/B1Button: "B1",
+        $GridContainer/B2Button: "B2",
     }
     for c in LevelDict.keys():
         c.connect("pressed", self, "_on_LevelButton_pressed", [c])
