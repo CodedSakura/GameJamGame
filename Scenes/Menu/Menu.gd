@@ -4,6 +4,7 @@ func _ready():
     $"/root/Transition/AnimationPlayer".play("fade_in")
 
 func _on_PlayButton_pressed():
+    globals.load_level = "1"
     $"/root/Transition/AnimationPlayer".play("fade_out")
     yield($"/root/Transition/AnimationPlayer", "animation_finished")
     get_tree().change_scene("res://Scenes/Main.tscn")
@@ -22,7 +23,6 @@ func _on_ExitButton_pressed():
 
 
 func _on_LevelSelectButton_pressed():
-    globals.load_level = "1"
     $"/root/Transition/AnimationPlayer".play("fade_out")
     yield($"/root/Transition/AnimationPlayer", "animation_finished")
     get_tree().change_scene("res://Scenes/Menu/LevelSelect.tscn")

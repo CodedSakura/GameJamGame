@@ -1,8 +1,32 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scenes/Modulate.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Tiles.tres" type="TileSet" id=2]
 [ext_resource path="res://Scenes/Laser/Laser_Emiter.tscn" type="PackedScene" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 152, 32 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 154, 128 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 32, 56 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 32, 120 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 8, 120 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 32, 8 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 32, 24 )
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 32, 80 )
 
 [node name="Piece" type="Node2D"]
 
@@ -21,9 +45,45 @@ tile_data = PoolIntArray( 589824, 0, 0, 589825, 0, 0, 589838, 0, 0, 655360, 0, 0
 collision_layer = 2
 collision_mask = 14
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Modulate/Area2D"]
-position = Vector2( 8, 176 )
-polygon = PoolVector2Array( 0, 392, 64, 392, 64, 24, 64, -88, 128, -88, 128, 136, 144, 136, 144, -56, 208, -56, 208, 136, 224, 136, 224, -104, 288, -104, 288, -24, 224, -24, 224, 136, 128, 136, 128, 24, 64, 24, 64, 392, 304, 392, 304, -168, 0, -168 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Modulate/Area2D"]
+position = Vector2( 160, 40 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Modulate/Area2D"]
+position = Vector2( 158, 440 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Modulate/Area2D"]
+position = Vector2( 104, 256 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Modulate/Area2D"]
+position = Vector2( 40, 192 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Modulate/Area2D"]
+position = Vector2( 144, 192 )
+shape = SubResource( 5 )
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Modulate/Area2D"]
+position = Vector2( 224, 192 )
+shape = SubResource( 5 )
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="Modulate/Area2D"]
+position = Vector2( 304, 192 )
+shape = SubResource( 5 )
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="Modulate/Area2D"]
+position = Vector2( 104, 80 )
+shape = SubResource( 6 )
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="Modulate/Area2D"]
+position = Vector2( 184, 96 )
+shape = SubResource( 7 )
+
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="Modulate/Area2D"]
+position = Vector2( 264, 232 )
+shape = SubResource( 8 )
 
 [node name="Laser_Emiter" parent="Modulate" instance=ExtResource( 3 )]
 position = Vector2( 56, 264 )

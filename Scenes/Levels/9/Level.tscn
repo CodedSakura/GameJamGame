@@ -31,7 +31,7 @@ script = ExtResource( 5 )
 
 [node name="Area2D" type="Area2D" parent="Constraint"]
 collision_layer = 8
-collision_mask = 0
+collision_mask = 4
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Constraint/Area2D"]
 visible = false

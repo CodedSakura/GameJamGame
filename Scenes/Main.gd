@@ -33,11 +33,6 @@ var global_pause = false
 
 func _ready():
     _load_level(globals.load_level, true)
-#    $"/root/Transition/AnimationPlayer".play("fade_in")
-#    yield($"/root/Transition/AnimationPlayer", "animation_finished")
-    print("> ", $Level, " ; ", $Level/Player)
-    $Level/Player.connect("player_death", self, "_handle_death")
-    $Level/Player.connect("player_victory", self, "_handle_victory")
     curr_level = $Level
     reset_camera()
     
@@ -240,6 +235,10 @@ func handle_cheats():
         if entered_cheat.begins_with("level "):
             print("changing level")
             _load_level(entered_cheat.trim_prefix("level "))
+        elif entered_cheat == "q":
+            $"/root/Transition/AnimationPlayer".play("fade_out")
+            yield($"/root/Transition/AnimationPlayer", "animation_finished")
+            get_tree().change_scene("res://Scenes/Menu/Menu.tscn")
         else: print("unknown cheat")
         entered_cheat = ""
         entering_cheat = false
